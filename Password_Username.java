@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Password_Username extends Calers{
+    //---------------------input--------------------//
     Scanner scanner = new Scanner(System.in);
     Methods methods = new Methods();
     ArrayList <String>password_list = new ArrayList();
     ArrayList <String>username_list = new ArrayList();
+    //--------------Variable----------------//
     private int num;
+    private int sum = 0;
     private int i;
     private String username_up;
     private String password_up;
@@ -30,12 +33,15 @@ public class Password_Username extends Calers{
         methods.cls();
     }
     public int check(){
+
             if((password_list.contains(password_in)) && (username_list.contains(username_in))){
                 System.out.println(ANSI_CYAN_BOLD+"WELCOME "+ANSI_RESET+ ANSI_CYAN_BOLD+username_in+ANSI_RESET);
+                sum++;
                 return 3;
             }
             else if ((password_in.equals("admin")) && username_in.equals("admin")){
                 System.out.println(ANSI_CYAN_BOLD+"WELCOME admin"+ANSI_RESET);
+                sum++;
                 return 2;
             }
             else {
@@ -63,6 +69,12 @@ public class Password_Username extends Calers{
                 break;
             }
         }
+    }
+    public void Set_a_new_username_and_password(){
+        System.out.println(ANSI_PURPLE+"NEW USERNAME : "+ANSI_RESET);
+        setPassword_up(scanner.next());
+        password_list.set(sum,getPassword_up());
+        System.out.println(getPassword_up());
     }
     //------------------------GETS & SETS-----------------------//
 
