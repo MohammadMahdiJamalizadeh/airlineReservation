@@ -16,8 +16,15 @@ public class Main {
             methods.cls();
             if (num == 2){
                 password_username.username_password_sing_up();
-                password_username.get_input_username_password();
+                password_username.get_input_username_password_sing_up();
                 methods.cls();
+            }
+            else if (num==1){
+                password_username.get_input_username_password_sing_in();
+                int x = password_username.check();
+                if (x == 1){
+                    break;
+                }
             }
 
         }
