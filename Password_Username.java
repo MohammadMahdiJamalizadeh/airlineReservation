@@ -32,9 +32,11 @@ public class Password_Username extends Calers{
     public int check(){
             if((password_list.contains(password_in)) && (username_list.contains(username_in))){
                 System.out.println(ANSI_CYAN_BOLD+"WELCOME "+ANSI_RESET+ ANSI_CYAN_BOLD+username_in+ANSI_RESET);
+                return 3;
             }
             else if ((password_in.equals("admin")) && username_in.equals("admin")){
                 System.out.println(ANSI_CYAN_BOLD+"WELCOME admin"+ANSI_RESET);
+                return 2;
             }
             else {
                 System.out.println("--------------------------------------------------------------------------");
@@ -43,7 +45,6 @@ public class Password_Username extends Calers{
                 System.out.println("--------------------------------------------------------------------------");
                 return 1;
             }
-        return 0;
     }
     public void get_input_username_password_sing_up(){
         for ( i = 0; i < 1000; i++) {
