@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //--------------------------input--------------------//
+        //---------------------input--------------------//
         Scanner scanner = new Scanner(System.in);
         Methods methods = new Methods();
         //--------------Variable----------------//
@@ -28,6 +28,9 @@ public class Main {
                     switch (n){
                         case 1:{
                             Small_User.changePassword();
+                        }
+                        case 3:{
+                            Tickets.print_flight_list();
                         }
 
                     }

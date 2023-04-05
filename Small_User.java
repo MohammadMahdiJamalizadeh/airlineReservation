@@ -2,7 +2,7 @@ package Project3;
 
 import java.util.Scanner;
 
-public class Small_User extends Calers{
+public class Small_User extends Colors{
     //--------------Variable----------------//
     private static String userName;
     private static String userPassword;

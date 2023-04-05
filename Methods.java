@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 
-public class Methods extends Calers {
+public class Methods extends Colors {
     //--------------------------input--------------------//
     Scanner scanner = new Scanner(System.in);
 
