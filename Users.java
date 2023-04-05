@@ -27,6 +27,9 @@ public class Users {
     public static int getI() {
         return i;
     }
+    public static int getI1() {
+        return i-1;
+    }
     public static void setI(int i) {
         Users.i = i;
     }

@@ -21,6 +21,20 @@ public class Main {
                 methods.cls();
             } else if (num == 1) {
                 methods.cls();
+                int x = methods.get_input_username_password_sing_in();//تابع ورودی گرفتن برای منوی sing_in
+                if (x == 1){
+                    methods.Passenger_menu_option();//تابع چاپ منو برای مسافر
+                    int n = scanner.nextInt();
+                    switch (n){
+                        case 1:{
+                            Small_User.changePassword();
+                        }
+
+                    }
+                }
+                else if(x == 2){
+
+                }
             }
 //                if (x == 1){
 //                    break;
