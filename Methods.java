@@ -25,28 +25,6 @@ public class Methods extends Colors {
         }
     }
 
-    public void print_menu_admin() {
-        System.out.println(ANSI_WHITE_BOLD + "Admin menu option" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "1- Add" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "2- Update" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "3- Remove" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "4- Flight schedules" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "0- Sing out" + ANSI_RESET);
-
-    }
-
-    public void print_menu_passenger() {
-        System.out.println(ANSI_WHITE_BOLD + "Passenger menu option" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "1-Change password" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "2- Search flight tickets" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "3- Booking ticket" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "4- Ticket cancellation" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "5- Booked tickets" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "6- Add charge" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "0- Sing out" + ANSI_RESET);
-
-    }
-
     public void get_input_username_password_sing_up() {
         String username, password;
         Scanner scanner = new Scanner(System.in);
@@ -64,6 +42,7 @@ public class Methods extends Colors {
             System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
             System.out.println(ANSI_BLACK_BOLD + "          Account successfully created :)" + ANSI_RESET);
             System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
+            Methods.wait(1);
             System.out.println(ANSI_RED + "Do you want to continue ?" + ANSI_RESET);
             System.out.println(ANSI_CYAN + "1-YES                  2-NO" + ANSI_RESET);
             int x = scanner.nextInt();
@@ -73,15 +52,6 @@ public class Methods extends Colors {
             }
         }
     }
-
-    //    public void get_input_username_password_sing_in(){
-//        System.out.println(ANSI_WHITE_BOLD + "Please enter your username and password :" + ANSI_RESET);
-//        System.out.print(ANSI_WHITE_BOLD+"USERNAME : "+ANSI_RESET);
-//        setUsername_in(scanner.next());
-//        System.out.print(ANSI_WHITE_BOLD+"PASSWORD : "+ANSI_RESET);
-//        setPassword_in(scanner.next());
-//        methods.cls();
-//    }
     public void Description_sing_up() {
         System.out.println("--------------------------------------------------------------------------");
         System.out.println(ANSI_YELLOW + "Dear user, please note that your username must contain English letters and" + ANSI_RESET + '\n' +
@@ -123,7 +93,14 @@ public class Methods extends Colors {
         }
         return 3;
     }
-    public void Passenger_menu_option(){
+    public static void wait(int sec) {
+        try {
+            Thread.currentThread().sleep(sec * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void Passenger_menu_option(){
         System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
         System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
         System.out.println("            PASSENGER MENU OPTION");
@@ -135,8 +112,10 @@ public class Methods extends Colors {
         System.out.println(ANSI_PURPLE+"4- Ticket cancellation"+ANSI_RESET);
         System.out.println(ANSI_PURPLE+"5- Booked thickets"+ANSI_RESET);
         System.out.println(ANSI_PURPLE+"6- Add charge"+ANSI_RESET);
+        System.out.println(ANSI_PURPLE+"7- Info"+ANSI_RESET);
         System.out.println(ANSI_PURPLE+"0- sing out"+ANSI_RESET);
     }
+
 
 }
 

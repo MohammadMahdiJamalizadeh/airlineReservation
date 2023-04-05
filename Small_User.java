@@ -6,24 +6,43 @@ public class Small_User extends Colors{
     //--------------Variable----------------//
     private static String userName;
     private static String userPassword;
-    private static String userTicket;
+    private static long Validity;
     //----------------Methods---------------//
     public static void changePassword(){
         Scanner scanner = new Scanner(System.in);
         Methods.cls();
-        System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
-        System.out.println(ANSI_YELLOW + "               Change Password" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
-        System.out.print(ANSI_CYAN_BOLD+"NEW USERNAME : "+ANSI_RESET);
-        userName = scanner.next();
-        Users.users[Users.getI1()] = userName;
-        setUserName(userName);
-        System.out.print(ANSI_CYAN_BOLD+"NEW PASSWORD : "+ANSI_RESET);
-        userPassword = scanner.next();
-        Users.password[Users.getI1()] = userPassword;
-        setUserName(userPassword);
+        while (true) {
+            System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
+            System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "               Change Password" + ANSI_RESET);
+            System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
+            System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
+            Methods.wait(1);
+            System.out.print(ANSI_CYAN_BOLD + "NEW USERNAME : " + ANSI_RESET);
+            userName = scanner.next();
+            Users.users[Users.getI1()] = userName;
+            setUserName(userName);
+            System.out.print(ANSI_CYAN_BOLD + "NEW PASSWORD : " + ANSI_RESET);
+            userPassword = scanner.next();
+            Users.password[Users.getI1()] = userPassword;
+            setUserName(userPassword);
+            Methods.wait(1);
+            System.out.println(ANSI_GREEN+"Do you want to continue?"+ANSI_RESET);
+            System.out.println(ANSI_BLUE+"1-YES       2-NO"+ANSI_RESET);
+            int x = scanner.nextInt();
+            if (x == 2){
+                Methods.wait(1);
+                break;
+            }
+        }
+    }
+    public static void info(){
+        Methods.cls();
+        System.out.println(ANSI_CYAN+"YOUR USERNAME : "+ANSI_RESET+ANSI_CYAN+Small_User.getUserName()+ANSI_RESET);
+        System.out.println(ANSI_CYAN+"YOUR PASSWORD : "+ANSI_RESET+ANSI_CYAN+Small_User.getUserPassword()+ANSI_RESET);
+        System.out.print(ANSI_BLACK_BOLD+"Your current account balance : "+ANSI_RESET);
+        System.out.printf("%,d%n",Small_User.getValidity());
+        Methods.wait(3);
     }
     //-------------Sets && Gets------------//
 
@@ -42,5 +61,13 @@ public class Small_User extends Colors{
 
     public static void setUserPassword(String userPassword) {
         Small_User.userPassword = userPassword;
+    }
+
+    public static Long getValidity() {
+        return Validity;
+    }
+
+    public static void setValidity(Long validity) {
+        Validity = validity;
     }
 }
