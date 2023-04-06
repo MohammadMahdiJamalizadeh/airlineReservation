@@ -3,10 +3,16 @@ public class Users {
     //--------------Variable----------------//
     public static String[] users = new String[50];
     public static String[] password = new String[50];
+    public static Tickets[] Tickets = new Tickets[50];
     private static int i;
     private static int j;
+    private static int k;
     private static Small_User small_user;
-    //----------------Constructor---------------//
+    //----------------Methods---------------//
+    public static void setTickets(Tickets tickets){
+        Tickets[k] = tickets;
+        k++;
+    }
     public static void setUserss(String users1){
         Users.users[Users.i] = users1;
         Users.i ++;
@@ -32,5 +38,13 @@ public class Users {
     }
     public static void setI(int i) {
         Users.i = i;
+    }
+
+    public static int getK() {
+        return k;
+    }
+
+    public static void setK(int k) {
+        Users.k = k;
     }
 }

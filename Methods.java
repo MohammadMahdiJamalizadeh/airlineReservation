@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 public class Methods extends Colors {
     //--------------------------input--------------------//
-    Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
     //    Password_Username password_username = new Password_Username();
     //----------------------METHODS-----------------------//
-    public void print_menu_sing_in_sing_up() {
+    public static void print_menu_sing_in_sing_up() {//تابع چاپ منوی اول کار
         System.out.println(ANSI_RED + "1-Sing in" + ANSI_RESET + '\n' + ANSI_BLUE + "2-Sing up" + ANSI_RESET);
     }
 
@@ -25,7 +25,7 @@ public class Methods extends Colors {
         }
     }
 
-    public void get_input_username_password_sing_up() {
+    public static void get_input_username_password_sing_up() {//تابع ورودی گرفتن بای منوی sing_up
         String username, password;
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -52,14 +52,14 @@ public class Methods extends Colors {
             }
         }
     }
-    public void Description_sing_up() {
+    public static void Description_sing_up() {//تابع توضیحات منوی sing_up
         System.out.println("--------------------------------------------------------------------------");
         System.out.println(ANSI_YELLOW + "Dear user, please note that your username must contain English letters and" + ANSI_RESET + '\n' +
                 "            " + ANSI_YELLOW + "your password must contain at least 6 numbers" + ANSI_RESET);
         System.out.println("--------------------------------------------------------------------------");
     }
 
-    public int get_input_username_password_sing_in() {
+    public static int get_input_username_password_sing_in() {//تابع ورودی گرفتن برای منوی sing_in
         String username, password;
         cls();
         System.out.println(ANSI_WHITE_BOLD + "Please enter your username and password :" + ANSI_RESET);
@@ -71,7 +71,7 @@ public class Methods extends Colors {
         return x;
     }
 
-    public int check(String username2, String password2) {
+    public static int check(String username2, String password2) {//تابع چک کردن برای تطابق username  و password منو های sing_up و sing_in
         cls();
         String username, password;
         username = username2;
@@ -100,7 +100,7 @@ public class Methods extends Colors {
             e.printStackTrace();
         }
     }
-    public static void Passenger_menu_option(){
+    public static void Passenger_menu_option(){//تابع چاپ منوی مسافر
         System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
         System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
         System.out.println("            PASSENGER MENU OPTION");
@@ -115,8 +115,25 @@ public class Methods extends Colors {
         System.out.println(ANSI_PURPLE+"7- Info"+ANSI_RESET);
         System.out.println(ANSI_PURPLE+"0- sing out"+ANSI_RESET);
     }
-
-
+    public static void Purchased_tickets(){//تابع چاپ بلیط های خریداری شده
+        Methods.wait(1);
+        if (Tickets.sum == 0){
+            System.out.println(ANSI_GREEN+"* Your shopping list is empty *"+ANSI_RESET);
+            Methods.wait(2);
+            return;
+        }
+        System.out.println(ANSI_BLACK_BOLD+".........................................................."+ANSI_RESET);
+        for (int i = 0; i < Users.getK(); i++) {
+            System.out.print(Colors.colors[i]+(i + 1)+"- "+Users.Tickets[i]+ANSI_RESET+'\t');
+            System.out.print(Colors.colors[i]+Users.Tickets[i]+ANSI_RESET+'\t');
+            System.out.print(Colors.colors[i]+Users.Tickets[i]+ANSI_RESET+'\t');
+            System.out.print(Colors.colors[i]+Users.Tickets[i]+ANSI_RESET+'\t');
+            System.out.print(Colors.colors[i]+Users.Tickets[i]+ANSI_RESET+'\t');
+            System.out.println(Colors.colors[i]+Users.Tickets[i]+ANSI_RESET);
+            System.out.println(ANSI_BLACK_BOLD+".........................................................."+ANSI_RESET);
+        }
+        Methods.wait(2);
+    }
 }
 
 
