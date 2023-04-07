@@ -7,9 +7,8 @@ public class Small_User extends Colors{
     private static String userName;
     private static String userPassword;
     private static long Validity;
-
     //----------------Methods---------------//
-    public static void changePassword(){//تابع برای عوض کردن پسورد
+    public static void changePassword(){//تابع برای عوض کردن password
         Scanner scanner = new Scanner(System.in);
         Methods.cls();
         while (true) {
@@ -37,7 +36,7 @@ public class Small_User extends Colors{
             }
         }
     }
-    public static void info(){//تابع چاپ اطلاعات کاربر
+    public static void print_info(){//تابع برای نمایش اطلاعات کاربر
         Methods.cls();
         System.out.println(ANSI_CYAN+"YOUR USERNAME : "+ANSI_RESET+ANSI_CYAN+Small_User.getUserName()+ANSI_RESET);
         System.out.println(ANSI_CYAN+"YOUR PASSWORD : "+ANSI_RESET+ANSI_CYAN+Small_User.getUserPassword()+ANSI_RESET);
@@ -45,13 +44,13 @@ public class Small_User extends Colors{
         System.out.printf("%,d%n",Small_User.getValidity());
         Methods.wait(3);
     }
-    public static void Add_charge(){//تابع افزایش شارژ موجودی حساب
+    public static void Add_charge(){//تابع برای افزایش شارژ
         Methods.cls();
         Scanner scanner = new Scanner(System.in);
+        System.out.print(ANSI_BLACK_BOLD+"Your current account balance : "+ANSI_RESET);
+        System.out.printf("%,d%n",Small_User.getValidity());
+        Methods.wait(2);
         while (true){
-            System.out.print(ANSI_BLACK_BOLD+"Your current account balance : "+ANSI_RESET);
-            System.out.printf("%,d%n",Small_User.getValidity());
-            Methods.wait(1);
             System.out.println(ANSI_RED+"Do you want to top up your account?"+ANSI_RESET);
             System.out.println(ANSI_BLUE+"1-YES       2-NO"+ANSI_RESET);
             int x = scanner.nextInt();
@@ -59,6 +58,7 @@ public class Small_User extends Colors{
                 Methods.wait(1);
                 break;
             }
+            Methods.wait(1);
             System.out.print("Please enter the desired amount(Toman) : ");
             Small_User.setValidity(scanner.nextLong()+Small_User.getValidity());
             Methods.cls();

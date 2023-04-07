@@ -1,16 +1,16 @@
 package Project3;
-public class Users {
+public class Users extends Colors{
     //--------------Variable----------------//
     public static String[] users = new String[50];
     public static String[] password = new String[50];
-    public static Tickets[] Tickets = new Tickets[50];
+    public static Tickets[] tickets = new Tickets[50];
     private static int i;
     private static int j;
     private static int k;
     private static Small_User small_user;
     //----------------Methods---------------//
-    public static void setTickets(Tickets tickets){
-        Tickets[k] = tickets;
+    public static void setTickets(Tickets ticket){
+        tickets[k] = ticket;
         k++;
     }
     public static void setUserss(String users1){
