@@ -11,7 +11,7 @@ public class Methods extends Colors {
     //    Password_Username password_username = new Password_Username();
     //----------------------METHODS-----------------------//
     public void print_menu_sing_in_sing_up() {//تابع چاپ منوی اول کار
-        System.out.println(ANSI_RED + "1-Sing in" + ANSI_RESET + '\n' + ANSI_BLUE + "2-Sing up" + ANSI_RESET);
+        System.out.println(ANSI_RED + "1- Sing in" + ANSI_RESET + '\n' + ANSI_BLUE + "2- Sing up" +'\n' +ANSI_RESET+ANSI_BLACK_BOLD+"0- Exit" + ANSI_RESET);
     }
 
     public static void cls() {
@@ -125,18 +125,7 @@ public class Methods extends Colors {
         SimpleDateFormat ft = new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss");
         System.out.println(ANSI_CYAN+"    Current Date: " + ft.format(dNow)+ANSI_RESET);
     }
-    public static void Booked_thickets(){//تابع برای مشاهده بلیط های خریداری شده
-        cls();
-        if (Users.getK() == 0){
-            System.out.println(ANSI_RED+"* You do not have a purchased ticket *"+ANSI_RESET);
-            wait(2);
-            return;
-        }
-        for (int i = 0; i < Users.getK(); i++) {
-            System.out.println(Colors.colors[i]+(i + 1)+"- "+Users.tickets[i]+ANSI_RESET);
-        }
-        wait(1);
-    }
+
     public static void print_Admin_menu_option(){
         System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
         System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);

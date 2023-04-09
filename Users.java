@@ -9,8 +9,9 @@ public class Users extends Colors{
     private static int k;
     private static Small_User small_user;
     //----------------Methods---------------//
-    public static void setTickets(Tickets ticket){
+    public static void setTickets(Tickets ticket){//ارایه برای بلیط های خریداری شده
         tickets[k] = ticket;
+        System.out.println(tickets[k].toString());
         k++;
     }
     public static void setUserss(String users1){

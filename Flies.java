@@ -25,7 +25,7 @@ public class Flies extends Colors{
 //        Price_fly = Price;
 //        Seat_fly = Seats;
 //    }
-    public static void setFlies(Tickets flies1){
+    public static void setFlies(Tickets flies1){//ارایه برای تمام بلیط هایی که وجود دارد
         fly[i] = flies1;
         i++;
     }

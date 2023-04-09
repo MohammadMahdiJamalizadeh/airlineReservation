@@ -1,8 +1,6 @@
 package Project3;
-
 import java.util.Scanner;
-
-public class Main {
+public class Main extends Colors{
     public static void main(String[] args) {
         //---------------------input--------------------//
         Scanner scanner = new Scanner(System.in);
@@ -14,14 +12,26 @@ public class Main {
         while (true) {
             methods.print_menu_sing_in_sing_up();// تابع چاپ منوی اول کار
             Methods.wait(1);
-            num = scanner.nextInt();
+            while (true){
+                if(scanner.hasNextInt()){
+                    num = scanner.nextInt();
+                    if(num > -1 && num < 3){
+                        break;
+                    }
+                }
+                System.out.println(ANSI_BLACK_BOLD+"! Please try again !"+ANSI_RESET);
+                scanner = new Scanner(System.in);
+            } // تنظیم کردن ورودی صحیح گرفتن
             methods.cls();
-            if (num == 2) {
+            if (num == 0){
+                return;
+            }
+            if (num == 2) {//ورورد برای قسمت sing_up
                 methods.cls();
                 methods.Description_sing_up();// تابع چاپ توضیحات منوی sing_up
                 Methods.wait(1);
                 methods.get_input_username_password_sing_up();// تابع ورودی گرفتن username  و password برای منوی sing_up
-            } else if (num == 1) {
+            } else if (num == 1) {//ورود برای قسمت sing_in
                 methods.cls();
                 int x = methods.get_input_username_password_sing_in();//تابع ورودی گرفتن برای منوی sing_in
                 Methods.wait(1);
@@ -44,7 +54,7 @@ public class Main {
                                 Small_User.print_info();//تابع برای مشاهده مشخصات و اطلاعات کاربر
                             }
                         else if(n == 5){//تابع برای مشاهده بلیط های خریداری شده
-                            Methods.Booked_thickets();
+                            Tickets.Booked_thickets();
                         }
                         else if (n == 4){
                             Tickets.Ticket_cancellation();//تابع برای کنسل کردن بلیط
@@ -65,7 +75,6 @@ public class Main {
                             Admin.Add_fly();//تابع برای اضافه کردن بلیط توسط ادمین سایت
                         }
                         else if(n == 2){
-
                         }
                         else if(n == 3){
                             Admin.Remove_Ticket();
@@ -77,7 +86,6 @@ public class Main {
                             Methods.cls();
                             break;
                         }
-
                     }
                 }
             }

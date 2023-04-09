@@ -4,20 +4,25 @@ import java.util.Scanner;
 
 public class Tickets extends Colors{
     //--------------Variable----------------//
-    private static String[] Origins = {"Yazd","Mashhad","Shiraz"};
-    private static String[] Destinations = {"Tehran","Ahvaz","Tabriz"};
-    private static String[] FlightIds = {"WX-12","WZ-15","BG-22"};
-    private static long[] Prices = {700000,900000,1100000};
-    private static int[] Hours = {12,8,22};
-    private static int[] Minutes = {30,00,30};
-    private static int[] Years = {1402,1402,1402};
-    private static int[] Months = {12,10,11};
-    private static int[] Days = {10,27,12};
-    private static int[] Seats = {51,245,12};
+    public static String[] Origins = {"Yazd","Mashhad","Shiraz","","",""};
+    public static String[] Destinations = {"Tehran","Ahvaz","Tabriz","","",""};
+    public static String[] FlightIds = {"WX-12","WZ-15","BG-22","","",""};
+    public static long[] Prices = {700000,900000,1100000,0,0,0};
+    public static int[] Hours = {12,8,22,0,0,0};
+    public static int[] Minutes = {30,00,30,0,0,0};
+    public static int[] Years = {1402,1402,1402,0,0,0};
+    public static int[] Months = {12,10,11,0,0,0};
+    public static int[] Days = {10,27,12,0,0,0};
+    public static int[] Seats = {51,245,12,0,0,0};
     public static void save_fly(){
         for (int i = 0; i < 3; i++) {
+            if (Years[i] != 0){
             Tickets ticket1 = new Tickets(FlightIds[i],Origins[i],Destinations[i],Years[i],Months[i],Days[i],Hours[i],Minutes[i],Prices[i],Seats[i]);
             Flies.setFlies(ticket1);
+            }
+            else {
+                break;
+            }
         }
     }
     //------------------------------//
@@ -36,7 +41,7 @@ public class Tickets extends Colors{
         Methods.cls();
         System.out.println(ANSI_GREEN+"|FlightId|"+'\t'+'\t'+"|Origin|"+'\t'+"|Destination|"+'\t'+"|Date|"+'\t'+'\t'+'\t'+"|Time|"+'\t'+'\t'+"|Price|"+'\t'+'\t'+"|Seats|"+ANSI_RESET);
         System.out.println(ANSI_BLACK_BOLD+"................................................................................................"+ANSI_RESET);
-        for (int i = 0; i < Origins.length; i++) {
+        for (int i = 0; i < Admin.getW(); i++) {
             System.out.print(Colors.colors[i]+(i+1)+"-"+"|"+FlightIds[i]+"|"+ANSI_RESET+'\t'+'\t');
             System.out.print(Colors.colors[i]+"|"+Origins[i]+"|"+ANSI_RESET+'\t'+'\t');
             System.out.print(Colors.colors[i]+"|"+Destinations[i]+"|"+ANSI_RESET+'\t'+'\t');
@@ -46,14 +51,15 @@ public class Tickets extends Colors{
             System.out.println(Colors.colors[i]+"|"+Seats[i]+"|"+ANSI_RESET);
             System.out.println(ANSI_BLACK_BOLD+"................................................................................................"+ANSI_RESET);
         }
-        Methods.wait(2);
+        Methods.wait(1);
     }
     public static void Buy_tickets(){//تابع برای خرید بلیط
         Scanner scanner = new Scanner(System.in);
         Methods.cls();
         int x;
         while (true) {
-            Tickets.print_flight_list();//منوی چاپ مشخصات بلیط ها
+              Tickets.print_flight_list();//منوی چاپ مشخصات بلیط ها
+//            Flies.print_list_fly();//تابع برای نشان دادن لیست پرواز ها
             System.out.print("desired number : ");
             x = scanner.nextInt();
             Methods.wait(1);
@@ -99,7 +105,7 @@ public class Tickets extends Colors{
     public static void Ticket_cancellation(){//تابع برای گنسل کردن بلیط
         Scanner scanner = new Scanner(System.in);
         Methods.cls();
-        Methods.Booked_thickets();
+        Booked_thickets();
         System.out.print(ANSI_PURPLE+"Please select the desired ticket number : "+ANSI_RESET);
         int x = scanner.nextInt();
         Users.tickets[x-1] = Users.tickets[x];
@@ -110,6 +116,18 @@ public class Tickets extends Colors{
         System.out.println(ANSI_GREEN+"Mission accomplished"+ANSI_RESET);
         Seats[x-1]++;
         Methods.wait(2);
+    }
+    public static void Booked_thickets(){//تابع برای مشاهده بلیط های خریداری شده
+        Methods.cls();
+        if (Users.getK() == 0){
+            System.out.println(ANSI_RED+"* You do not have a purchased ticket *"+ANSI_RESET);
+            Methods.wait(2);
+            return;
+        }
+        for (int i = 0; i < Users.getK(); i++) {
+            System.out.println(Colors.colors[i]+(i + 1)+"- "+Users.tickets[i].toString()+ANSI_RESET);
+        }
+        Methods.wait(1);
     }
 
     //--------------Constructors-------------//
@@ -130,11 +148,9 @@ public class Tickets extends Colors{
     public static String getOrigin() {
         return Origin;
     }
-
     public static void setOrigin(String origin) {
         Origin = origin;
     }
-
     public static String getDestination() {
         return Destination;
     }
@@ -205,5 +221,11 @@ public class Tickets extends Colors{
 
     public static void setSeat(int seat) {
         Seat = seat;
+    }
+    //-----------------ToString-------------//
+
+    @Override
+    public  String toString() {
+        return "Id : "+FlightId;
     }
 }
