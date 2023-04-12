@@ -1,35 +1,29 @@
 package Project3;
 public class Users extends Colors{
     //--------------Variable----------------//
-    public static String[] users = new String[50];
-    public static String[] password = new String[50];
-    public static Tickets[] tickets = new Tickets[50];
+//    public static String[] users = new String[50];
+//    public static String[] password = new String[50];
+    public Small_User[] users = new Small_User[50];
     private static int i;
     private static int j;
-    private static int k;
-    private static Small_User small_user;
+//    private static Small_User small_user;
     //----------------Methods---------------//
-    public static void setTickets(Tickets ticket){//ارایه برای بلیط های خریداری شده
-        tickets[k] = ticket;
-        System.out.println(tickets[k].toString());
-        k++;
-    }
-    public static void setUserss(String users1){
-        Users.users[Users.i] = users1;
-        Users.i ++;
-    }
-    public static void setPassword(String password1){
-        Users.password[Users.j] = password1;
-        Users.j ++;
-    }
-    //-------------Sets && Gets------------//
-    public static Small_User getSmall_user() {
-        return small_user;
+
+    public void setUsers(Small_User small_user) {
+        users[i] = small_user;
+        i++;
     }
 
-    public static void setSmall_user(Small_User small_user) {
-        Users.small_user = small_user;
-    }
+//    public static void setUserss(String users1){
+//        Users.users[Users.i] = users1;
+//        Users.i ++;
+//    }
+//    public static void setPassword(String password1){
+//        Users.password[Users.j] = password1;
+//        Users.j ++;
+//    }
+    //-------------Sets && Gets------------//
+
 
     public static int getI() {
         return i;
@@ -41,11 +35,4 @@ public class Users extends Colors{
         Users.i = i;
     }
 
-    public static int getK() {
-        return k;
-    }
-
-    public static void setK(int k) {
-        Users.k = k;
-    }
 }

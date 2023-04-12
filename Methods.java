@@ -5,15 +5,33 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 public class Methods extends Colors {
+    //-------------------------------------//
+    private static int i;
     //--------------------------input--------------------//
     Scanner scanner = new Scanner(System.in);
-
+    static Small_User small_user = new Small_User();
+    static Users users = new Users();
+    //--------------------------------//
     //    Password_Username password_username = new Password_Username();
     //----------------------METHODS-----------------------//
     public void print_menu_sing_in_sing_up() {//تابع چاپ منوی اول کار
+
         System.out.println(ANSI_RED + "1- Sing in" + ANSI_RESET + '\n' + ANSI_BLUE + "2- Sing up" +'\n' +ANSI_RESET+ANSI_BLACK_BOLD+"0- Exit" + ANSI_RESET);
     }
-
+    public int Set_the_correct_input(){
+         int number = 0;
+        while (true){ // تنظیم کردن ورودی صحیح گرفتن
+            if(scanner.hasNextInt()){
+                number = scanner.nextInt();
+                if(number > -1 && number < 3){
+                    break;
+                }
+            }
+            System.out.println(ANSI_BLACK_BOLD+"! Please try again !"+ANSI_RESET);
+            scanner = new Scanner(System.in);
+        }
+        return number;
+    }
     public static void cls() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
@@ -27,25 +45,28 @@ public class Methods extends Colors {
 
     public void get_input_username_password_sing_up() {//تابع برای ورودی گرفتن منوی sing_up
         String username, password;
+        int x;
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println(ANSI_WHITE_BOLD + "Please enter your username and password :" + ANSI_RESET);
             System.out.print(ANSI_WHITE_BOLD + "USERNAME : " + ANSI_RESET);
             username = scanner.next();
-            Small_User.setUserName(username);
-            Users.setUserss(username);
+            small_user.setUserName(username);
+//            Users.setUserss(username);
             System.out.print(ANSI_WHITE_BOLD + "PASSWORD : " + ANSI_RESET);
             password = scanner.next();
-            Small_User.setUserPassword(password);
-            Users.setPassword(password);
+            small_user.setUserPassword(password);
+//            Users.setPassword(password);
+            Small_User small_user = new Small_User(username,password);
+            users.setUsers(small_user);
             cls();
             System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
             System.out.println(ANSI_BLACK_BOLD + "          Account successfully created :)" + ANSI_RESET);
             System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
             Methods.wait(1);
             System.out.println(ANSI_RED + "Do you want to continue ?" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + "1-YES                  2-NO" + ANSI_RESET);
-            int x = scanner.nextInt();
+            System.out.println(ANSI_CYAN + "1-YES            2-NO" + ANSI_RESET);
+             x = scanner.nextInt();
             if (x == 2) {
                 cls();
                 break;
@@ -77,25 +98,28 @@ public class Methods extends Colors {
         String username, password;
         username = username2;
         password = password2;
-        for (int i = 0; i < Users.getI(); i++) {
-            if ((Users.password[i].equals(password)) && (Users.users[i].equals(username))) {
-                cls();
-                System.out.println(ANSI_CYAN + "              WELCOME " + ANSI_RESET + ANSI_CYAN + username + ANSI_RESET);
-                return 1;
+        while (true) {
+            for (int i = 0; i < Users.getI(); i++) {
+                if ((username.equals(users.users[i].getUserName())) && (password.equals(users.users[i].getUserPassword()))) {
+                    cls();
+                    System.out.println(ANSI_CYAN + "              WELCOME " + ANSI_RESET + ANSI_CYAN + username + ANSI_RESET);
+                    setI(i);
+                    return 1;
+                }
             }
-        }
             if ((password.equals("Admin")) && (username.equals("Admin"))) {
-                System.out.println(ANSI_CYAN+"              WELCOME Admin"+ANSI_RESET);
+                System.out.println(ANSI_CYAN + "              WELCOME Admin" + ANSI_RESET);
                 wait(1);
                 return 2;
-            }
-            else {
+            } else {
                 System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
-                System.out.println(ANSI_BLACK_BOLD+"          The desired user was not found!"+ANSI_RESET);
+                System.out.println(ANSI_BLACK_BOLD + "          The desired user was not found!" + ANSI_RESET);
                 System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
+                wait(1);
             }
 
-        return 3;
+            return 3;
+        }
     }
     public static void wait(int sec) {
         try {
@@ -137,6 +161,80 @@ public class Methods extends Colors {
         System.out.println(ANSI_BLUE+"3- Remove"+ANSI_RESET);
         System.out.println(ANSI_BLUE+"4- Flight schedules"+ANSI_RESET);
         System.out.println(ANSI_BLUE+"0- sing out"+ANSI_RESET);
+    }
+    public static void print_list_fly(){ //چاپ لیست پرواز ها
+        for (int j = 0; j < Flies.getI(); j++) {
+            System.out.println(Colors.colors[j]+(j + 1)+"- "+Flies.fly[j]+ANSI_RESET);
+        }
+        Methods.wait(2);
+    }
+    public static void changePassword(){//تابع برای عوض کردن password
+        Scanner scanner = new Scanner(System.in);
+        String password,username;
+        Methods.cls();
+        while (true) {
+            System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
+            System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "               Change Password" + ANSI_RESET);
+            System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
+            System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
+            Methods.wait(1);
+            System.out.print(ANSI_CYAN_BOLD + "NEW USERNAME : " + ANSI_RESET);
+            username = scanner.next();
+            users.users[getI()].setUserName(username);
+//            users.users[Users.getI1()] = small_user.getUserName();
+            System.out.print(ANSI_CYAN_BOLD + "NEW PASSWORD : " + ANSI_RESET);
+            password = scanner.next();
+            users.users[getI()].setUserPassword(password);
+            Methods.wait(1);
+            System.out.println(ANSI_GREEN+"The password was changed Do you want to continue?"+ANSI_RESET);
+            System.out.println(ANSI_BLUE+"1-YES       2-NO"+ANSI_RESET);
+            int x = scanner.nextInt();
+            if (x == 2){
+                Methods.wait(1);
+                break;
+            }
+        }
+    }
+    public static void Add_charge(){//تابع برای افزایش شارژ
+        Methods.cls();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(ANSI_BLACK_BOLD+"Your current account balance : "+ANSI_RESET);
+        System.out.printf("%,d%n",small_user.getCharge());
+        Methods.wait(2);
+        while (true){
+            System.out.println(ANSI_RED+"Do you want to top up your account?"+ANSI_RESET);
+            System.out.println(ANSI_BLUE+"1-YES       2-NO"+ANSI_RESET);
+            int x = scanner.nextInt();
+            if(x==2){
+                Methods.wait(1);
+                break;
+            }
+            Methods.wait(1);
+            System.out.print("Please enter the desired amount(Toman) : ");
+            small_user.setCharge(scanner.nextLong()+small_user.getCharge());
+            Methods.cls();
+            Methods.wait(1);
+            System.out.println(ANSI_GREEN+"Charging was done successfully. Do you want to continue?"+ANSI_RESET);
+            System.out.println(ANSI_BLUE+"1-YES       2-NO"+ANSI_RESET);
+            x = scanner.nextInt();
+            if (x == 2){
+                Methods.wait(1);
+                break;
+            }
+            Methods.wait(1);
+        }
+    }
+
+    //----------------SETS && GETS-------------//
+
+
+    public static int getI() {
+        return i;
+    }
+
+    public static void setI(int i) {
+        Methods.i = i;
     }
 }
 
