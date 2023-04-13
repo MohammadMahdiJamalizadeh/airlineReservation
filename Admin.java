@@ -43,17 +43,13 @@ public class Admin extends Colors{
             System.out.println(ANSI_BLUE + "}" + ANSI_RESET);
             System.out.print(ANSI_BLACK_BOLD + "Price : " + ANSI_RESET);
             Long Prince = scanner.nextLong();
-//            Tickets.Prices[w] = Prince;
             System.out.print(ANSI_BLACK_BOLD + "Seats : " + ANSI_RESET);
             int Seat = scanner.nextInt();
-//            Tickets.Seats[w] = Seat;
-            Tickets tickets = new Tickets(Id,Origin,Destination,Year,Month,Day,Hour,Minutes,Prince,Seat);
-            small_user.tickets[w] = tickets;
+            Flight flight = new Flight(Id,Origin,Destination,Year,Month,Day,Hour,Minutes,Prince,Seat);
+            Flies.setFlies(flight);
             w++;
             Methods.wait(1);
             Methods.cls();
-//            Tickets tickets = new Tickets(Id,Origin,Destination,Year,Month,Day,Hour,Minutes,Prince,Seat);
-            Flies.setFlies(tickets);
             System.out.println(ANSI_CYAN + "Mission accomplished" + ANSI_RESET);
             System.out.println(ANSI_BLUE + "Do you want to continue?" + ANSI_RESET);
             System.out.println("1-YES      2-NO");
@@ -66,10 +62,11 @@ public class Admin extends Colors{
     public static void Remove_Ticket() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            Methods.print_list_fly();//تابع برای نشان دادن لیست پرواز ها
+            Tickets.print_flight_list();//منوی چاپ مشخصات بلیط ها
+            Methods.wait(2);
             System.out.print("Please select the desired number : ");
             int x = scanner.nextInt();
-            Flies.fly[x - 1] = Flies.fly[x];
+            Flies.fly[x-1] = Flies.fly[x];
             Flies.setI(Flies.getI()-1);
             for (int i = x; i < Flies.getI(); i++) {
                 Flies.fly[i] = Flies.fly[i + 1];

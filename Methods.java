@@ -103,7 +103,7 @@ public class Methods extends Colors {
                 if ((username.equals(users.users[i].getUserName())) && (password.equals(users.users[i].getUserPassword()))) {
                     cls();
                     System.out.println(ANSI_CYAN + "              WELCOME " + ANSI_RESET + ANSI_CYAN + username + ANSI_RESET);
-                    setI(i);
+                    Users.setJ(i);
                     return 1;
                 }
             }
@@ -162,12 +162,6 @@ public class Methods extends Colors {
         System.out.println(ANSI_BLUE+"4- Flight schedules"+ANSI_RESET);
         System.out.println(ANSI_BLUE+"0- sing out"+ANSI_RESET);
     }
-    public static void print_list_fly(){ //چاپ لیست پرواز ها
-        for (int j = 0; j < Flies.getI(); j++) {
-            System.out.println(Colors.colors[j]+(j + 1)+"- "+Flies.fly[j]+ANSI_RESET);
-        }
-        Methods.wait(2);
-    }
     public static void changePassword(){//تابع برای عوض کردن password
         Scanner scanner = new Scanner(System.in);
         String password,username;
@@ -181,11 +175,11 @@ public class Methods extends Colors {
             Methods.wait(1);
             System.out.print(ANSI_CYAN_BOLD + "NEW USERNAME : " + ANSI_RESET);
             username = scanner.next();
-            users.users[getI()].setUserName(username);
+            users.users[Users.getJ()].setUserName(username);
 //            users.users[Users.getI1()] = small_user.getUserName();
             System.out.print(ANSI_CYAN_BOLD + "NEW PASSWORD : " + ANSI_RESET);
             password = scanner.next();
-            users.users[getI()].setUserPassword(password);
+            users.users[Users.getJ()].setUserPassword(password);
             Methods.wait(1);
             System.out.println(ANSI_GREEN+"The password was changed Do you want to continue?"+ANSI_RESET);
             System.out.println(ANSI_BLUE+"1-YES       2-NO"+ANSI_RESET);
@@ -196,13 +190,14 @@ public class Methods extends Colors {
             }
         }
     }
-    public static void Add_charge(){//تابع برای افزایش شارژ
+    public static void Add_charge(Small_User user1){//تابع برای افزایش شارژ
+        long charge;
         Methods.cls();
         Scanner scanner = new Scanner(System.in);
-        System.out.print(ANSI_BLACK_BOLD+"Your current account balance : "+ANSI_RESET);
-        System.out.printf("%,d%n",small_user.getCharge());
-        Methods.wait(2);
         while (true){
+            System.out.print(ANSI_BLACK_BOLD+"Your current account balance : "+ANSI_RESET);
+            System.out.printf("%,d%n",users.users[Users.getJ()].getCharge());
+            Methods.wait(2);
             System.out.println(ANSI_RED+"Do you want to top up your account?"+ANSI_RESET);
             System.out.println(ANSI_BLUE+"1-YES       2-NO"+ANSI_RESET);
             int x = scanner.nextInt();
@@ -212,7 +207,9 @@ public class Methods extends Colors {
             }
             Methods.wait(1);
             System.out.print("Please enter the desired amount(Toman) : ");
-            small_user.setCharge(scanner.nextLong()+small_user.getCharge());
+            charge = scanner.nextLong();
+            charge = charge + user1.getCharge();
+            user1.setCharge(charge);
             Methods.cls();
             Methods.wait(1);
             System.out.println(ANSI_GREEN+"Charging was done successfully. Do you want to continue?"+ANSI_RESET);
@@ -225,6 +222,7 @@ public class Methods extends Colors {
             Methods.wait(1);
         }
     }
+
 
     //----------------SETS && GETS-------------//
 
