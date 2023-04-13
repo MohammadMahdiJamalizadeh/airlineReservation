@@ -4,6 +4,16 @@ import java.util.Scanner;
 
 public class Tickets extends Colors{
     //--------------Variable----------------//
+    private  static String Origin;
+    private  static String Destination;
+    private  static String FlightId;
+    private  static long Price;
+    private  static int Hour;
+    private  static int Minute;
+    private  static int Year;
+    private  static int Month;
+    private  static int Day;
+    private  static int Seat;
     private static int sum = 0;
     //-----------------Methods--------------//
     public static void Buy_tickets(Small_User users1){//تابع برای خرید بلیط
@@ -22,18 +32,30 @@ public class Tickets extends Colors{
                     System.out.println(ANSI_WHITE_BOLD + "Your ticket purchase was successful" + ANSI_RESET);
                     Methods.wait(1);
                     //---------------------//
-                    Ticket.setFlightId(Flies.fly[x-1].getFlightId());
-                    Ticket.setOrigin(Flies.fly[x-1].getOrigin());
-                    Ticket.setDestination(Flies.fly[x-1].getDestination());
-                    Ticket.setYear(Flies.fly[x-1].getYear());
-                    Ticket.setMonth(Flies.fly[x-1].getMonth());
-                    Ticket.setDay(Flies.fly[x-1].getDay());
-                    Ticket.setHour(Flies.fly[x-1].getHour());
-                    Ticket.setMinute(Flies.fly[x-1].getMinute());
-                    Ticket.setPrice(Flies.fly[x-1].getPrice());
-                    Ticket.setSeat(Flies.fly[x-1].getSeat());
-                    Ticket ticket = new Ticket(Ticket.getFlightId(),Ticket.getOrigin(),Ticket.getDestination(),Ticket.getYear(),Ticket.getMonth(),Ticket.getDay(),Ticket.getHour(),Ticket.getMinute(),Ticket.getPrice(),Ticket.getSeat());
-                    Small_User.setTicket(ticket);
+                    FlightId = Flies.fly[x-1].getFlightId();
+                    Origin = Flies.fly[x-1].getOrigin();
+                    Destination = Flies.fly[x-1].getDestination();
+                    Year = Flies.fly[x-1].getYear();
+                    Month = Flies.fly[x-1].getMonth();
+                    Day = Flies.fly[x-1].getDay();
+                    Hour = Flies.fly[x-1].getHour();
+                    Minute = Flies.fly[x-1].getMinute();
+                    Price = Flies.fly[x-1].getPrice();
+                    Seat = Flies.fly[x-1].getSeat();
+                    Ticket ticket = new Ticket(FlightId,Origin,Destination,Year,Month,Day,Hour,Minute,Price,Seat);
+                    users1.setTicket(ticket);
+//                    Ticket.setFlightId(Flies.fly[x-1].getFlightId());
+//                    Ticket.setOrigin(Flies.fly[x-1].getOrigin());
+//                    Ticket.setDestination(Flies.fly[x-1].getDestination());
+//                    Ticket.setYear(Flies.fly[x-1].getYear());
+//                    Ticket.setMonth(Flies.fly[x-1].getMonth());
+//                    Ticket.setDay(Flies.fly[x-1].getDay());
+//                    Ticket.setHour(Flies.fly[x-1].getHour());
+//                    Ticket.setMinute(Flies.fly[x-1].getMinute());
+//                    Ticket.setPrice(Flies.fly[x-1].getPrice());
+//                    Ticket.setSeat(Flies.fly[x-1].getSeat());
+//                    Ticket ticket = new Ticket(Ticket.getFlightId(),Ticket.getOrigin(),Ticket.getDestination(),Ticket.getYear(),Ticket.getMonth(),Ticket.getDay(),Ticket.getHour(),Ticket.getMinute(),Ticket.getPrice(),Ticket.getSeat());
+//                    users1.setTicket(ticket);
                     //------------------------//
                     System.out.println(ANSI_RED + "Do you want to continue?" + ANSI_RESET);
                     System.out.println(ANSI_BLUE + "1-YES     2-NO" + ANSI_RESET);
@@ -102,6 +124,7 @@ public class Tickets extends Colors{
             Methods.wait(2);
             return;
         }
+        Methods.wait(1);
         for (int i = 0; i < Small_User.getI(); i++) {
             System.out.print(Colors.colors[i] + (i + 1) + "-" + "|" + users1.ticket[i].getFlightId()+ "|" + ANSI_RESET + '\t' + '\t');
             System.out.print(Colors.colors[i] + "|" + users1.ticket[i].getOrigin() + "|" + ANSI_RESET + '\t' + '\t');
@@ -109,9 +132,7 @@ public class Tickets extends Colors{
             System.out.print(Colors.colors[i] + "|" + users1.ticket[i].getYear() + "/" + users1.ticket[i].getMonth() + "/" + users1.ticket[i].getDay() + "|" + ANSI_RESET + '\t');
             System.out.print(Colors.colors[i] + "|" + users1.ticket[i].getHour() + ":" + users1.ticket[i].getMinute() + "|" + ANSI_RESET + '\t' + '\t');
             System.out.println(Colors.colors[i] + "|" + users1.ticket[i].getPrice() + "|" + ANSI_RESET + '\t');
-            Methods.wait(1);
+
         }
     }
-
-
 }

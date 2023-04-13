@@ -8,8 +8,8 @@ public class Small_User extends Colors{
     public  static Ticket[] ticket = new Ticket[50];
     private static int i = 0;
     //---------------Constructor--------------//
-    public static void setTicket(Ticket ticket){//تابع برای بلیط خریداری شده توسط مسافر
-        Small_User.ticket[i] = ticket;
+    public static void setTicket(Ticket ticket1){//تابع برای بلیط خریداری شده توسط مسافر
+        Small_User.ticket[i] = ticket1;
         i++;
     }
     public Small_User(String userName, String userPassword) {

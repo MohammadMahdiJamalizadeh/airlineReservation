@@ -74,6 +74,7 @@ public class Main extends Colors{
                             Admin.Add_fly();//تابع برای اضافه کردن بلیط توسط ادمین سایت
                         }
                         else if(n == 2){
+                            Admin.Update_fly();
                         }
                         else if(n == 3){
                             Admin.Remove_Ticket();
