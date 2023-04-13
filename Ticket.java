@@ -12,7 +12,9 @@ public class Ticket {
     private  static int Month;
     private  static int Day;
     private  static int Seat;
+    private static int j;
     //----------constructor----------//
+
     public Ticket(String flightId, String origin, String destination, int year, int month, int day, int hour, int minute, long price,int seats) {
         FlightId = flightId;
         Origin = origin;
@@ -105,4 +107,5 @@ public class Ticket {
     public static void setSeat(int seat) {
         Seat = seat;
     }
+
 }

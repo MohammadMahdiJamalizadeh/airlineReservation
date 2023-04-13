@@ -12,7 +12,6 @@ public class Tickets extends Colors{
         int x;
         while (true) {
             Tickets.print_flight_list();//منوی چاپ مشخصات بلیط ها
-//            Methods.print_list_fly();//تابع برای نشان دادن لیست پرواز ها
             System.out.print("desired number : ");
             x = scanner.nextInt();
             Methods.wait(1);

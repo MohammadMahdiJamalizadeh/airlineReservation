@@ -20,18 +20,6 @@ public class Small_User extends Colors{
     public Small_User(){
 
     }
-
-    //----------------Methods---------------//
-//    public static void print_info(){//تابع برای نمایش اطلاعات کاربر
-//        Methods.cls();
-//        System.out.println(ANSI_CYAN+"YOUR USERNAME : "+ANSI_RESET+ANSI_CYAN+Small_User.getUserName()+ANSI_RESET);
-//        System.out.println(ANSI_CYAN+"YOUR PASSWORD : "+ANSI_RESET+ANSI_CYAN+Small_User.getUserPassword()+ANSI_RESET);
-//        System.out.print(ANSI_BLACK_BOLD+"Your current account balance : "+ANSI_RESET);
-//        System.out.printf("%,d%n",Small_User.getCharge());
-//        Methods.wait(3);
-//    }
-
-
     //-------------Sets && Gets------------//
     public static int getI() {
         return i;

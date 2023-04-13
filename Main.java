@@ -49,9 +49,9 @@ public class Main extends Colors{
                         else if (n == 6){
                                 methods.Add_charge(Users.users[Users.getJ()]);//تابع برای افزایش شارژ
                             }
-//                        else if (n == 7){
-//                                Small_User.print_info();//تابع برای مشاهده مشخصات و اطلاعات کاربر
-//                            }
+                        else if (n == 7){
+                                methods.print_info(Users.users[Users.getJ()]);//تابع برای مشاهده مشخصات و اطلاعات کاربر
+                            }
                         else if(n == 5){//تابع برای مشاهده بلیط های خریداری شده
                             Tickets.Booked_thickets(Users.users[Users.getJ()]);
                         }

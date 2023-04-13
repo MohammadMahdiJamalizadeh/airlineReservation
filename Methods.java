@@ -222,6 +222,14 @@ public class Methods extends Colors {
             Methods.wait(1);
         }
     }
+    public static void print_info(Small_User users){//تابع برای نمایش اطلاعات کاربر
+        Methods.cls();
+        System.out.println(ANSI_CYAN+"YOUR USERNAME : "+ANSI_RESET+ANSI_CYAN+users.getUserName()+ANSI_RESET);
+        System.out.println(ANSI_CYAN+"YOUR PASSWORD : "+ANSI_RESET+ANSI_CYAN+users.getUserPassword()+ANSI_RESET);
+        System.out.print(ANSI_BLACK_BOLD+"Your current account balance : "+ANSI_RESET);
+        System.out.printf("%,d%n",users.getCharge());
+        Methods.wait(3);
+    }
 
 
     //----------------SETS && GETS-------------//
