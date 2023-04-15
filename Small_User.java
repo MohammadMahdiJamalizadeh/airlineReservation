@@ -5,13 +5,9 @@ public class Small_User extends Colors{
     private String userName;
     private String userPassword;
     private long Charge;
-    public  static Ticket[] ticket = new Ticket[50];
-    private static int i = 0;
+    public  Ticket[] ticket = new Ticket[50];
     //---------------Constructor--------------//
-    public static void setTicket(Ticket ticket1){//تابع برای بلیط خریداری شده توسط مسافر
-        Small_User.ticket[i] = ticket1;
-        i++;
-    }
+
     public Small_User(String userName, String userPassword) {
         this.userName = userName;
         this.userPassword = userPassword;
@@ -21,14 +17,6 @@ public class Small_User extends Colors{
 
     }
     //-------------Sets && Gets------------//
-    public static int getI() {
-        return i;
-    }
-
-    public static void setI(int i) {
-        Small_User.i = i;
-    }
-
     public String getUserName() {
         return userName;
     }

@@ -2,110 +2,101 @@ package Project3;
 
 public class Ticket {
     //-----------variable------------//
-    private  static String Origin;
-    private  static String Destination;
-    private  static String FlightId;
-    private  static long Price;
-    private  static int Hour;
-    private  static int Minute;
-    private  static int Year;
-    private  static int Month;
-    private  static int Day;
-    private  static int Seat;
-    private static int j;
+    private  String Origin;
+    private  String Destination;
+    private  String FlightId;
+    private  long Price;
+    private  String Time;
+    private  String Year;
+    private  String Month;
+    private  String Day;
+    private  int Seat;
+    private  int j;
     //----------constructor----------//
 
-    public Ticket(String flightId, String origin, String destination, int year, int month, int day, int hour, int minute, long price,int seats) {
+    public Ticket(String flightId, String origin, String destination, String year, String month, String day, String time, long price,int seats) {
         FlightId = flightId;
         Origin = origin;
         Destination = destination;
         Year = year;
         Month = month;
         Day = day;
-        Hour = hour;
-        Minute = minute;
+        Time = time;
         Price = price;
         Seat = seats;
     }
     //----------Sets && Gets---------//
-    public static String getOrigin() {
+
+
+    public String getOrigin() {
         return Origin;
     }
 
-    public static void setOrigin(String origin) {
+    public void setOrigin(String origin) {
         Origin = origin;
     }
 
-    public static String getDestination() {
+    public String getDestination() {
         return Destination;
     }
 
-    public static void setDestination(String destination) {
+    public void setDestination(String destination) {
         Destination = destination;
     }
 
-    public static String getFlightId() {
+    public String getFlightId() {
         return FlightId;
     }
 
-    public static void setFlightId(String flightId) {
+    public void setFlightId(String flightId) {
         FlightId = flightId;
     }
 
-    public static long getPrice() {
+    public long getPrice() {
         return Price;
     }
 
-    public static void setPrice(long price) {
+    public void setPrice(long price) {
         Price = price;
     }
 
-    public static int getHour() {
-        return Hour;
+    public String getTime() {
+        return Time;
     }
 
-    public static void setHour(int hour) {
-        Hour = hour;
+    public void setTime(String time) {
+        Time = time;
     }
 
-    public static int getMinute() {
-        return Minute;
-    }
-
-    public static void setMinute(int minute) {
-        Minute = minute;
-    }
-
-    public static int getYear() {
+    public String getYear() {
         return Year;
     }
 
-    public static void setYear(int year) {
+    public void setYear(String year) {
         Year = year;
     }
 
-    public static int getMonth() {
+    public String getMonth() {
         return Month;
     }
 
-    public static void setMonth(int month) {
+    public void setMonth(String month) {
         Month = month;
     }
 
-    public static int getDay() {
+    public String getDay() {
         return Day;
     }
 
-    public static void setDay(int day) {
+    public void setDay(String day) {
         Day = day;
     }
 
-    public static int getSeat() {
+    public int getSeat() {
         return Seat;
     }
 
-    public static void setSeat(int seat) {
+    public void setSeat(int seat) {
         Seat = seat;
     }
-
 }

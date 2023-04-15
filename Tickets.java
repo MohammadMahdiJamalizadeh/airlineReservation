@@ -2,65 +2,38 @@ package Project3;
 
 import java.util.Scanner;
 
-public class Tickets extends Colors{
+public class Tickets extends Colors {
+
     //--------------Variable----------------//
-    private  static String Origin;
-    private  static String Destination;
-    private  static String FlightId;
-    private  static long Price;
-    private  static int Hour;
-    private  static int Minute;
-    private  static int Year;
-    private  static int Month;
-    private  static int Day;
-    private  static int Seat;
-    private static int sum = 0;
+    private static int i = 0;
     //-----------------Methods--------------//
-    public static void Buy_tickets(Small_User users1){//تابع برای خرید بلیط
+    public void setTicket(Small_User user,Ticket ticket1){//تابع برای بلیط خریداری شده توسط مسافر
+        user.ticket[i] = ticket1;
+        i++;
+    }
+    public void Buy_tickets(Small_User users1) {//تابع برای خرید بلیط
         Scanner scanner = new Scanner(System.in);
+        Tickets tickets = new Tickets();
         Methods.cls();
         int x;
         while (true) {
-            Tickets.print_flight_list();//منوی چاپ مشخصات بلیط ها
+            tickets.print_flight_list();//منوی چاپ مشخصات بلیط ها
             System.out.print("desired number : ");
             x = scanner.nextInt();
             Methods.wait(1);
-            if (users1.getCharge() > Flies.fly[x-1].getPrice()) {
-                if (Flies.fly[x-1].getSeat() > 0) {
-                    users1.setCharge(users1.getCharge()-Flies.fly[x-1].getPrice());
-                    Flies.fly[x - 1].setSeat(Flies.fly[x-1].getSeat()- 1);
+            if (users1.getCharge() > Flies.fly[x - 1].getPrice()) {
+                if (Flies.fly[x - 1].getSeat() > 0) {
+                    users1.setCharge(users1.getCharge() - Flies.fly[x - 1].getPrice());
+                    Flies.fly[x - 1].setSeat(Flies.fly[x - 1].getSeat() - 1);
                     System.out.println(ANSI_WHITE_BOLD + "Your ticket purchase was successful" + ANSI_RESET);
                     Methods.wait(1);
-                    //---------------------//
-                    FlightId = Flies.fly[x-1].getFlightId();
-                    Origin = Flies.fly[x-1].getOrigin();
-                    Destination = Flies.fly[x-1].getDestination();
-                    Year = Flies.fly[x-1].getYear();
-                    Month = Flies.fly[x-1].getMonth();
-                    Day = Flies.fly[x-1].getDay();
-                    Hour = Flies.fly[x-1].getHour();
-                    Minute = Flies.fly[x-1].getMinute();
-                    Price = Flies.fly[x-1].getPrice();
-                    Seat = Flies.fly[x-1].getSeat();
-                    Ticket ticket = new Ticket(FlightId,Origin,Destination,Year,Month,Day,Hour,Minute,Price,Seat);
-                    users1.setTicket(ticket);
-//                    Ticket.setFlightId(Flies.fly[x-1].getFlightId());
-//                    Ticket.setOrigin(Flies.fly[x-1].getOrigin());
-//                    Ticket.setDestination(Flies.fly[x-1].getDestination());
-//                    Ticket.setYear(Flies.fly[x-1].getYear());
-//                    Ticket.setMonth(Flies.fly[x-1].getMonth());
-//                    Ticket.setDay(Flies.fly[x-1].getDay());
-//                    Ticket.setHour(Flies.fly[x-1].getHour());
-//                    Ticket.setMinute(Flies.fly[x-1].getMinute());
-//                    Ticket.setPrice(Flies.fly[x-1].getPrice());
-//                    Ticket.setSeat(Flies.fly[x-1].getSeat());
-//                    Ticket ticket = new Ticket(Ticket.getFlightId(),Ticket.getOrigin(),Ticket.getDestination(),Ticket.getYear(),Ticket.getMonth(),Ticket.getDay(),Ticket.getHour(),Ticket.getMinute(),Ticket.getPrice(),Ticket.getSeat());
-//                    users1.setTicket(ticket);
-                    //------------------------//
+                        Ticket ticket = new Ticket(Flies.fly[x-1].getFlightId(),Flies.fly[x-1].getOrigin(),Flies.fly[x-1].getDestination(),Flies.fly[x-1].getYear(),
+                                Flies.fly[x-1].getMonth(),Flies.fly[x-1].getDay(),Flies.fly[x-1].getTime(),Flies.fly[x-1].getPrice(),Flies.fly[x-1].getSeat());
+                        tickets.setTicket(users1,ticket);
                     System.out.println(ANSI_RED + "Do you want to continue?" + ANSI_RESET);
                     System.out.println(ANSI_BLUE + "1-YES     2-NO" + ANSI_RESET);
                     x = scanner.nextInt();
-                    if(x == 2){
+                    if (x == 2) {
                         Methods.wait(1);
                         break;
                     }
@@ -76,32 +49,31 @@ public class Tickets extends Colors{
             }
         }
     }
-    public void save_fly(){
-        Flight flight = new Flight("WX-12","Yazd","Tehran",1402,12,10,12,30,700000,51);
+    public void save_fly() {
+        Flight flight = new Flight("WX-12", "Yazd", "Tehran", "1402", "12", "10", "12:30", 700000, 51);
         Flies.setFlies(flight);
-        Flight flight1 = new Flight("WZ-15","Mashhad","Ahvaz",1402,10,27,8,50,900000,245);
+        Flight flight1 = new Flight("WZ-15", "Mashhad", "Ahvaz", "1402", "10", "27", "13:50", 900000, 245);
         Flies.setFlies(flight1);
-        Flight flight2 = new Flight("BG-22","Shiraz","Tabriz",1402,11,12,12,00,1100000,12);
+        Flight flight2 = new Flight("BG-22", "Shiraz", "Tabriz", "1402", "11", "12", "8:00", 1100000, 12);
         Flies.setFlies(flight2);
     }
-    public static void print_flight_list(){// تابع چاپ لیست پرواز ها
+    public void print_flight_list() {// تابع چاپ لیست پرواز ها
         Methods.cls();
-        System.out.println(ANSI_GREEN+"|FlightId|"+'\t'+'\t'+"|Origin|"+'\t'+"|Destination|"+'\t'+"|Date|"+'\t'+'\t'+'\t'+"|Time|"+'\t'+'\t'+"|Price|"+'\t'+'\t'+"|Seats|"+ANSI_RESET);
-        System.out.println(ANSI_BLACK_BOLD+"................................................................................................"+ANSI_RESET);
+        System.out.println(ANSI_GREEN + "|FlightId|" + '\t' + '\t' + "|Origin|" + '\t' + "|Destination|" + '\t' + "|Date|" + '\t' + '\t' + '\t' + "|Time|" + '\t' + '\t' + "|Price|" + '\t' + '\t' + "|Seats|" + ANSI_RESET);
+        System.out.println(ANSI_BLACK_BOLD + "................................................................................................" + ANSI_RESET);
         for (int i = 0; i < Flies.getI(); i++) {
-            System.out.print(Colors.colors[i]+(i+1)+"-"+"|"+Flies.fly[i].getFlightId()+"|"+ANSI_RESET+'\t'+'\t');
-            System.out.print(Colors.colors[i]+"|"+Flies.fly[i].getOrigin()+"|"+ANSI_RESET+'\t'+'\t');
-            System.out.print(Colors.colors[i]+"|"+Flies.fly[i].getDestination()+"|"+ANSI_RESET+'\t'+'\t');
-            System.out.print(Colors.colors[i]+"|"+Flies.fly[i].getYear()+"/"+Flies.fly[i].getMonth()+"/"+Flies.fly[i].getDay()+"|"+ANSI_RESET+'\t');
-            System.out.print(Colors.colors[i]+"|"+Flies.fly[i].getHour()+":"+Flies.fly[i].getMinute()+"|"+ANSI_RESET+'\t'+'\t');
-            System.out.print(Colors.colors[i]+"|"+Flies.fly[i].getPrice()+"|"+ANSI_RESET+'\t');
-            System.out.println(Colors.colors[i]+"|"+Flies.fly[i].getSeat()+"|"+ANSI_RESET);
-            System.out.println(ANSI_BLACK_BOLD+"................................................................................................"+ANSI_RESET);
+            System.out.print(Colors.colors[i] + (i + 1) + "-" + "|" + Flies.fly[i].getFlightId() + "|" + ANSI_RESET + '\t' + '\t');
+            System.out.print(Colors.colors[i] + "|" + Flies.fly[i].getOrigin() + "|" + ANSI_RESET + '\t' + '\t');
+            System.out.print(Colors.colors[i] + "|" + Flies.fly[i].getDestination() + "|" + ANSI_RESET + '\t' + '\t');
+            System.out.print(Colors.colors[i] + "|" + Flies.fly[i].getYear() + "/" + Flies.fly[i].getMonth() + "/" + Flies.fly[i].getDay() + "|" + ANSI_RESET + '\t');
+            System.out.print(Colors.colors[i] + "|" + Flies.fly[i].getTime() + "|" + ANSI_RESET + '\t' + '\t');
+            System.out.print(Colors.colors[i] + "|" + Flies.fly[i].getPrice() + "|" + ANSI_RESET + '\t');
+            System.out.println(Colors.colors[i] + "|" + Flies.fly[i].getSeat() + "|" + ANSI_RESET);
+            System.out.println(ANSI_BLACK_BOLD + "................................................................................................" + ANSI_RESET);
         }
         Methods.wait(1);
     }
-
-//    public static void Ticket_cancellation(Flies flies){//تابع برای گنسل کردن بلیط
+    //    public static void Ticket_cancellation(Flies flies){//تابع برای گنسل کردن بلیط
 //        Scanner scanner = new Scanner(System.in);
 //        Methods.cls();
 //        Booked_thickets();
@@ -116,23 +88,35 @@ public class Tickets extends Colors{
 //        Seats[x-1]++;
 //        Methods.wait(2);
 //    }
-    public static void Booked_thickets(Small_User users1) {//تابع برای مشاهده بلیط های خریداری شده
+    public void Booked_thickets(Small_User users1) {//تابع برای مشاهده بلیط های خریداری شده
         Methods.cls();
 
-        if (users1.getI() == 0) {
+        if (getI() == 0) {
             System.out.println(ANSI_RED + "* You do not have a purchased ticket *" + ANSI_RESET);
             Methods.wait(2);
             return;
         }
         Methods.wait(1);
-        for (int i = 0; i < Small_User.getI(); i++) {
-            System.out.print(Colors.colors[i] + (i + 1) + "-" + "|" + users1.ticket[i].getFlightId()+ "|" + ANSI_RESET + '\t' + '\t');
+        for (int i = 0; i < getI(); i++) {
+            System.out.print(Colors.colors[i] + (i + 1) + "-" + "|" + users1.ticket[i].getFlightId() + "|" + ANSI_RESET + '\t' + '\t');
             System.out.print(Colors.colors[i] + "|" + users1.ticket[i].getOrigin() + "|" + ANSI_RESET + '\t' + '\t');
             System.out.print(Colors.colors[i] + "|" + users1.ticket[i].getDestination() + "|" + ANSI_RESET + '\t' + '\t');
             System.out.print(Colors.colors[i] + "|" + users1.ticket[i].getYear() + "/" + users1.ticket[i].getMonth() + "/" + users1.ticket[i].getDay() + "|" + ANSI_RESET + '\t');
-            System.out.print(Colors.colors[i] + "|" + users1.ticket[i].getHour() + ":" + users1.ticket[i].getMinute() + "|" + ANSI_RESET + '\t' + '\t');
+            System.out.print(Colors.colors[i] + "|" + users1.ticket[i].getTime() + "|" + ANSI_RESET + '\t' + '\t');
             System.out.println(Colors.colors[i] + "|" + users1.ticket[i].getPrice() + "|" + ANSI_RESET + '\t');
-
         }
+        Methods.wait(3);
+    }
+    //--------------Gets && Sets---------------//
+    public static int getI() {
+        return i;
+    }
+
+    public static void setI(int i) {
+        i = i;
+    }
+    //---------------Constructor---------------//
+
+    public Tickets() {
     }
 }

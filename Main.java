@@ -6,6 +6,8 @@ public class Main extends Colors{
         Scanner scanner = new Scanner(System.in);
         Methods methods = new Methods();
         Tickets tickets = new Tickets();
+        Admin admin = new Admin();
+        Users users = new Users();
 //        Users users = new Users();
         //--------------Variable----------------//
         int num;
@@ -41,19 +43,19 @@ public class Main extends Colors{
                         Methods.wait(1);
                         int n = scanner.nextInt();
                         if (n == 1){
-                                methods.changePassword();//تابع برای عوض کردن پسورد
+                                methods.changePassword(users.users[users.getJ()]);//تابع برای عوض کردن پسورد
                             }
                         else if (n == 3) {
-                            Tickets.Buy_tickets(Users.users[Users.getJ()]);//تابع برای خریدن بلیط
+                            tickets.Buy_tickets(users.users[users.getJ()]);//تابع برای خریدن بلیط
                             }
                         else if (n == 6){
-                                methods.Add_charge(Users.users[Users.getJ()]);//تابع برای افزایش شارژ
+                                methods.Add_charge(users.users[users.getJ()]);//تابع برای افزایش شارژ
                             }
                         else if (n == 7){
-                                methods.print_info(Users.users[Users.getJ()]);//تابع برای مشاهده مشخصات و اطلاعات کاربر
+                                methods.print_info(users.users[users.getJ()]);//تابع برای مشاهده مشخصات و اطلاعات کاربر
                             }
                         else if(n == 5){//تابع برای مشاهده بلیط های خریداری شده
-                            Tickets.Booked_thickets(Users.users[Users.getJ()]);
+                            tickets.Booked_thickets(users.users[users.getJ()]);
                         }
 //                        else if (n == 4){
 //                            Tickets.Ticket_cancellation();//تابع برای کنسل کردن بلیط*/
@@ -68,19 +70,19 @@ public class Main extends Colors{
                 else if(x == 2) {// قسمت ادمین سایت
                     while (true) {
                         Methods.cls();
-                        Methods.print_Admin_menu_option();//چاپ منو برای ادمین
+                        methods.print_Admin_menu_option();//چاپ منو برای ادمین
                         int n = scanner.nextInt();
                         if (n == 1){
-                            Admin.Add_fly();//تابع برای اضافه کردن بلیط توسط ادمین سایت
+                            admin.Add_fly();//تابع برای اضافه کردن بلیط توسط ادمین سایت
                         }
                         else if(n == 2){
-                            Admin.Update_fly();
+                            admin.Update_fly();
                         }
                         else if(n == 3){
-                            Admin.Remove_Ticket();
+                            admin.Remove_Ticket();
                         }
                         else if (n == 4) {
-                            Tickets.print_flight_list();//تابع برای نشان دادن لیست پرواز ها
+                            tickets.print_flight_list();//تابع برای نشان دادن لیست پرواز ها
                             methods.wait(2);
                         }
                         else if (n == 0){

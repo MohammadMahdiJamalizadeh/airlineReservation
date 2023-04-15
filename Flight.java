@@ -5,25 +5,23 @@ public class Flight extends Colors{
     private  String FlightId;
     private  String Origin;
     private  String Destination;
-    private  int Year;
-    private  int Month;
-    private  int Day;
-    private  int Hour;
-    private  int Minute;
+    private  String Year;
+    private  String Month;
+    private  String Day;
+    private  String Time;
     private  long Price;
     private  int Seat;
     //---------------Constructor------------//
 
 
-    public Flight(String flightId, String origin, String destination, int year, int month, int day, int hour, int minute, long price, int seat) {
+    public Flight(String flightId, String origin, String destination, String year, String month, String day, String time, long price, int seat) {
         FlightId = flightId;
         Origin = origin;
         Destination = destination;
         Year = year;
         Month = month;
         Day = day;
-        Hour = hour;
-        Minute = minute;
+        Time = time;
         Price = price;
         Seat = seat;
     }
@@ -53,44 +51,36 @@ public class Flight extends Colors{
         Destination = destination;
     }
 
-    public int getYear() {
+    public String getYear() {
         return Year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         Year = year;
     }
 
-    public int getMonth() {
+    public String getMonth() {
         return Month;
     }
 
-    public void setMonth(int month) {
+    public void setMonth(String month) {
         Month = month;
     }
 
-    public int getDay() {
+    public String getDay() {
         return Day;
     }
 
-    public void setDay(int day) {
+    public void setDay(String day) {
         Day = day;
     }
 
-    public int getHour() {
-        return Hour;
+    public String getTime() {
+        return Time;
     }
 
-    public void setHour(int hour) {
-        Hour = hour;
-    }
-
-    public int getMinute() {
-        return Minute;
-    }
-
-    public void setMinute(int minute) {
-        Minute = minute;
+    public void setTime(String time) {
+        Time = time;
     }
 
     public long getPrice() {

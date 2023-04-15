@@ -3,7 +3,7 @@ public class Users extends Colors{
     //--------------Variable----------------//
     public static Small_User[] users = new Small_User[50];
     private static int i;
-    private static int j;
+    private int j;
     //----------------Methods---------------//
 
     public void setUsers(Small_User small_user) {
@@ -20,11 +20,11 @@ public class Users extends Colors{
         Users.i = i;
     }
 
-    public static int getJ() {
+    public int getJ() {
         return j;
     }
 
-    public static void setJ(int j) {
-        Users.j = j;
+    public void setJ(int j) {
+        this.j = j;
     }
 }
