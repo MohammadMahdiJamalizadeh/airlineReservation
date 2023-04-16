@@ -11,7 +11,8 @@ public class Ticket {
     private  String Month;
     private  String Day;
     private  int Seat;
-    private  int j;
+    private int i = 0;
+    public Ticket[] ticket = new Ticket[50];
     //----------constructor----------//
 
     public Ticket(String flightId, String origin, String destination, String year, String month, String day, String time, long price,int seats) {
@@ -24,6 +25,8 @@ public class Ticket {
         Time = time;
         Price = price;
         Seat = seats;
+    }
+    public Ticket() {
     }
     //----------Sets && Gets---------//
 
@@ -98,5 +101,13 @@ public class Ticket {
 
     public void setSeat(int seat) {
         Seat = seat;
+    }
+
+    public int getI() {
+        return i;
+    }
+
+    public void setI(int i) {
+        this.i = i;
     }
 }

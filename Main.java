@@ -57,9 +57,9 @@ public class Main extends Colors{
                         else if(n == 5){//تابع برای مشاهده بلیط های خریداری شده
                             tickets.Booked_thickets(users.users[users.getJ()]);
                         }
-//                        else if (n == 4){
-//                            Tickets.Ticket_cancellation();//تابع برای کنسل کردن بلیط*/
-//                        }
+                        else if (n == 4){
+                            methods.Ticket_cancellation(users.users[users.getJ()]);//تابع برای کنسل کردن بلیط*/
+                        }
                         else if (n == 0){
                             Methods.cls();
                             Methods.wait(1);

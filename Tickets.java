@@ -5,11 +5,10 @@ import java.util.Scanner;
 public class Tickets extends Colors {
 
     //--------------Variable----------------//
-    private static int i = 0;
     //-----------------Methods--------------//
     public void setTicket(Small_User user,Ticket ticket1){//تابع برای بلیط خریداری شده توسط مسافر
-        user.ticket[i] = ticket1;
-        i++;
+        user.ticket.ticket[user.ticket.getI()] = ticket1;
+        user.ticket.setI(user.ticket.getI() + 1);
     }
     public void Buy_tickets(Small_User users1) {//تابع برای خرید بلیط
         Scanner scanner = new Scanner(System.in);
@@ -90,31 +89,23 @@ public class Tickets extends Colors {
 //    }
     public void Booked_thickets(Small_User users1) {//تابع برای مشاهده بلیط های خریداری شده
         Methods.cls();
-
-        if (getI() == 0) {
+        if (users1.ticket.getI() == 0) {
             System.out.println(ANSI_RED + "* You do not have a purchased ticket *" + ANSI_RESET);
             Methods.wait(2);
             return;
         }
         Methods.wait(1);
-        for (int i = 0; i < getI(); i++) {
-            System.out.print(Colors.colors[i] + (i + 1) + "-" + "|" + users1.ticket[i].getFlightId() + "|" + ANSI_RESET + '\t' + '\t');
-            System.out.print(Colors.colors[i] + "|" + users1.ticket[i].getOrigin() + "|" + ANSI_RESET + '\t' + '\t');
-            System.out.print(Colors.colors[i] + "|" + users1.ticket[i].getDestination() + "|" + ANSI_RESET + '\t' + '\t');
-            System.out.print(Colors.colors[i] + "|" + users1.ticket[i].getYear() + "/" + users1.ticket[i].getMonth() + "/" + users1.ticket[i].getDay() + "|" + ANSI_RESET + '\t');
-            System.out.print(Colors.colors[i] + "|" + users1.ticket[i].getTime() + "|" + ANSI_RESET + '\t' + '\t');
-            System.out.println(Colors.colors[i] + "|" + users1.ticket[i].getPrice() + "|" + ANSI_RESET + '\t');
+        for (int i = 0; i < users1.ticket.getI(); i++) {
+            System.out.print(Colors.colors[i] + (i + 1) + "-" + "|" + users1.ticket.ticket[i].getFlightId() + "|" + ANSI_RESET + '\t' + '\t');
+            System.out.print(Colors.colors[i] + "|" + users1.ticket.ticket[i].getOrigin() + "|" + ANSI_RESET + '\t' + '\t');
+            System.out.print(Colors.colors[i] + "|" + users1.ticket.ticket[i].getDestination() + "|" + ANSI_RESET + '\t' + '\t');
+            System.out.print(Colors.colors[i] + "|" + users1.ticket.ticket[i].getYear() + "/" + users1.ticket.ticket[i].getMonth() + "/" + users1.ticket.ticket[i].getDay() + "|" + ANSI_RESET + '\t');
+            System.out.print(Colors.colors[i] + "|" + users1.ticket.ticket[i].getTime() + "|" + ANSI_RESET + '\t' + '\t');
+            System.out.println(Colors.colors[i] + "|" + users1.ticket.ticket[i].getPrice() + "|" + ANSI_RESET + '\t');
         }
         Methods.wait(3);
     }
     //--------------Gets && Sets---------------//
-    public static int getI() {
-        return i;
-    }
-
-    public static void setI(int i) {
-        i = i;
-    }
     //---------------Constructor---------------//
 
     public Tickets() {

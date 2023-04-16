@@ -5,7 +5,7 @@ public class Small_User extends Colors{
     private String userName;
     private String userPassword;
     private long Charge;
-    public  Ticket[] ticket = new Ticket[50];
+    public Ticket ticket = new Ticket();
     //---------------Constructor--------------//
 
     public Small_User(String userName, String userPassword) {
@@ -41,8 +41,5 @@ public class Small_User extends Colors{
         Charge = charge;
     }
 
-    public Ticket[] getTicket() {
-        return ticket;
-    }
 
 }
