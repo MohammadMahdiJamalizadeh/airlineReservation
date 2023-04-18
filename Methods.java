@@ -3,6 +3,7 @@ package Project3;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import java.util.Scanner;
 public class Methods extends Colors {
     //-------------------------------------//
@@ -74,6 +75,11 @@ public class Methods extends Colors {
                 "            " + ANSI_YELLOW + "your password must contain at least 6 numbers" + ANSI_RESET);
         System.out.println("--------------------------------------------------------------------------");
     }
+    public static int Random(){
+        Random random = new Random();
+        int a = random.nextInt(10000)+50000;
+        return a;
+    }
 
     public int get_input_username_password_sing_in() {//تبع برای وروردی گرفتن منوی sing_in
         String username, password;
@@ -98,8 +104,6 @@ public class Methods extends Colors {
                     cls();
                     System.out.println(ANSI_CYAN + "              WELCOME " + ANSI_RESET + ANSI_CYAN + username + ANSI_RESET);
                     users.setJ(i);
-                    System.out.println(users.getI());
-                    System.out.println(users.getJ());
                     return 1;
                 }
             }
@@ -145,6 +149,13 @@ public class Methods extends Colors {
         SimpleDateFormat ft = new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss");
         System.out.println(ANSI_CYAN+"    Current Date: " + ft.format(dNow)+ANSI_RESET);
     }
+    public static void pressEnterToContinue()
+    {
+        System.out.println("Press Enter key to continue...");    try    {
+        System.in.read();    }
+    catch(Exception e)
+    {}
+    }
 
     public void print_Admin_menu_option(){
         System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
@@ -174,39 +185,46 @@ public class Methods extends Colors {
             System.out.print(ANSI_CYAN_BOLD + "NEW PASSWORD : " + ANSI_RESET);
             password = scanner.next();
             user1.setUserPassword(password);
-            Methods.wait(1);
+            Methods.wait(0/5);
             System.out.println(ANSI_GREEN+"The password was changed"+ANSI_RESET);
-            Methods.wait(1);
+            Methods.pressEnterToContinue();
     }
     public void Add_charge(Small_User user1){//تابع برای افزایش شارژ
         long charge;
         Methods.cls();
         Scanner scanner = new Scanner(System.in);
-        while (true){
-            System.out.print(ANSI_BLACK_BOLD+"Your current account balance : "+ANSI_RESET);
-            System.out.printf("%,d%n",user1.getCharge());
-            Methods.wait(2);
-            System.out.println(ANSI_RED+"Do you want to top up your account?"+ANSI_RESET);
-            System.out.println(ANSI_BLUE+"1-YES       2-NO"+ANSI_RESET);
-            int x = scanner.nextInt();
-            if(x==2){
+        while (true) {
+            try {
+
+
+                System.out.print(ANSI_BLACK_BOLD + "Your current account balance : " + ANSI_RESET);
+                System.out.printf("%,d%n", user1.getCharge());
                 Methods.wait(1);
-                break;
-            }
-            Methods.wait(1);
-            System.out.print("Please enter the desired amount(Toman) : ");
-            charge = scanner.nextLong();
-            user1.setCharge(charge + user1.getCharge());
-            Methods.cls();
-            Methods.wait(1);
-            System.out.println(ANSI_GREEN+"Charging was done successfully. Do you want to continue?"+ANSI_RESET);
-            System.out.println(ANSI_BLUE+"1-YES       2-NO"+ANSI_RESET);
-            x = scanner.nextInt();
-            if (x == 2){
+                Methods.pressEnterToContinue();
+                System.out.println(ANSI_RED + "Do you want to top up your account?" + ANSI_RESET);
+                System.out.println(ANSI_BLUE + "1-YES       2-NO" + ANSI_RESET);
+                int x = scanner.nextInt();
+                if (x == 2) {
+
+                    break;
+                }
+
+                System.out.print("Please enter the desired amount(Toman) : ");
+                charge = scanner.nextLong();
+                user1.setCharge(charge + user1.getCharge());
+                Methods.cls();
                 Methods.wait(1);
-                break;
+                System.out.println(ANSI_GREEN + "Charging was done successfully. Do you want to continue?" + ANSI_RESET);
+                System.out.println(ANSI_BLUE + "1-YES       2-NO" + ANSI_RESET);
+                x = scanner.nextInt();
+                if (x == 2) {
+                    break;
+                }
+
+
+            }catch (Exception a){
+                System.out.println("Try Again");
             }
-            Methods.wait(1);
         }
     }
     public void print_info(Small_User users){//تابع برای نمایش اطلاعات کاربر
@@ -215,30 +233,32 @@ public class Methods extends Colors {
         System.out.println(ANSI_CYAN+"YOUR PASSWORD : "+ANSI_RESET+ANSI_CYAN+users.getUserPassword()+ANSI_RESET);
         System.out.print(ANSI_BLACK_BOLD+"Your current account balance : "+ANSI_RESET);
         System.out.printf("%,d%n",users.getCharge());
-        Methods.wait(3);
+        Methods.pressEnterToContinue();
     }
     public void Ticket_cancellation(Small_User user){ // تابع برای کنسل کردن بلیط
         Methods.cls();
         Tickets tickets = new Tickets();
         tickets.Booked_thickets(user);
-        System.out.print(ANSI_CYAN+"Please enter the desired ID : "+ANSI_RESET);
-        String str = scanner.next();
+        if (user.ticket.getI() == 0) {
+            return;
+        }
+        System.out.print(ANSI_CYAN+"Please enter the desired TicketId : "+ANSI_RESET);
+        int str = scanner.nextInt();
         for (int j = 0; j < user.ticket.getI(); j++) {
-            if (str.equals(user.ticket.ticket[j].getFlightId())){
+            if (str == user.ticket.ticket[j].getTicketId()){
                 user.setCharge(user.getCharge()+user.ticket.ticket[j].getPrice());
-//                user.ticket.ticket[j].setSeat(user.ticket.ticket[j].getSeat() + 1);
                 Flies.fly[j].setSeat(Flies.fly[j].getSeat() + 1);
                 for (int k = j; k < user.ticket.getI(); k++) {
                     user.ticket.ticket[k] = user.ticket.ticket[k+1];
                 }
-                wait(2);
+                wait(1);
                 System.out.println(ANSI_BLACK_BOLD+"Your ticket has been cancelled"+ANSI_RESET);
                 user.ticket.setI(user.ticket.getI() - 1);
-                wait(1);
+                Methods.pressEnterToContinue();
                 return;
             }
         }
-        wait(2);
+        wait(1);
         System.out.println(ANSI_BLUE+"!The desired ID was not found!"+ANSI_RESET);
     }
     //----------------SETS && GETS-------------//

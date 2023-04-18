@@ -16,35 +16,41 @@ public class Tickets extends Colors {
         Methods.cls();
         int x;
         while (true) {
-            tickets.print_flight_list();//منوی چاپ مشخصات بلیط ها
-            System.out.print("desired number : ");
-            x = scanner.nextInt();
-            Methods.wait(1);
-            if (users1.getCharge() > Flies.fly[x - 1].getPrice()) {
-                if (Flies.fly[x - 1].getSeat() > 0) {
-                    users1.setCharge(users1.getCharge() - Flies.fly[x - 1].getPrice());
-                    Flies.fly[x - 1].setSeat(Flies.fly[x - 1].getSeat() - 1);
-                    System.out.println(ANSI_WHITE_BOLD + "Your ticket purchase was successful" + ANSI_RESET);
-                    Methods.wait(1);
-                        Ticket ticket = new Ticket(Flies.fly[x-1].getFlightId(),Flies.fly[x-1].getOrigin(),Flies.fly[x-1].getDestination(),Flies.fly[x-1].getYear(),
-                                Flies.fly[x-1].getMonth(),Flies.fly[x-1].getDay(),Flies.fly[x-1].getTime(),Flies.fly[x-1].getPrice(),Flies.fly[x-1].getSeat());
-                        tickets.setTicket(users1,ticket);
-                    System.out.println(ANSI_RED + "Do you want to continue?" + ANSI_RESET);
-                    System.out.println(ANSI_BLUE + "1-YES     2-NO" + ANSI_RESET);
-                    x = scanner.nextInt();
-                    if (x == 2) {
-                        Methods.wait(1);
+            try {
+
+                tickets.print_flight_list();//منوی چاپ مشخصات بلیط ها
+                System.out.print("desired number : ");
+                x = scanner.nextInt();
+                Methods.wait(1);
+                if (users1.getCharge() > Flies.fly[x - 1].getPrice()) {
+                    if (Flies.fly[x - 1].getSeat() > 0) {
+                        users1.setCharge(users1.getCharge() - Flies.fly[x - 1].getPrice());
+                        Flies.fly[x - 1].setSeat(Flies.fly[x - 1].getSeat() - 1);
+                        int ticketid = Methods.Random();
+                        System.out.println(ANSI_WHITE_BOLD + "Your ticket purchase was successful" + ANSI_RESET);
+                        Methods.wait(0 / 5);
+                        Ticket ticket = new Ticket(Flies.fly[x - 1].getFlightId(), Flies.fly[x - 1].getOrigin(), Flies.fly[x - 1].getDestination(), Flies.fly[x - 1].getYear(),
+                                Flies.fly[x - 1].getMonth(), Flies.fly[x - 1].getDay(), Flies.fly[x - 1].getTime(), Flies.fly[x - 1].getPrice(), Flies.fly[x - 1].getSeat(), ticketid);
+                        tickets.setTicket(users1, ticket);
+                        System.out.println(ANSI_RED + "Do you want to continue?" + ANSI_RESET);
+                        System.out.println(ANSI_BLUE + "1-YES     2-NO" + ANSI_RESET);
+                        x = scanner.nextInt();
+                        if (x == 2) {
+                            Methods.wait(1);
+                            break;
+                        }
+                    } else {
+                        System.out.println(ANSI_BLACK_BOLD + "!Unfortunately, there is no empty capacity!" + ANSI_RESET);
+                        Methods.wait(2);
                         break;
                     }
                 } else {
-                    System.out.println(ANSI_BLACK_BOLD + "!Unfortunately, there is no empty capacity!" + ANSI_RESET);
+                    System.out.println(ANSI_BLACK_BOLD + "!Your account balance is insufficient!" + ANSI_RESET);
                     Methods.wait(2);
                     break;
                 }
-            } else {
-                System.out.println(ANSI_BLACK_BOLD + "!Your account balance is insufficient!" + ANSI_RESET);
-                Methods.wait(2);
-                break;
+            }catch (Exception a){
+                System.out.println("Try Again");
             }
         }
     }
@@ -69,41 +75,35 @@ public class Tickets extends Colors {
             System.out.print(Colors.colors[i] + "|" + Flies.fly[i].getPrice() + "|" + ANSI_RESET + '\t');
             System.out.println(Colors.colors[i] + "|" + Flies.fly[i].getSeat() + "|" + ANSI_RESET);
             System.out.println(ANSI_BLACK_BOLD + "................................................................................................" + ANSI_RESET);
+            Methods.wait(0/5);
         }
-        Methods.wait(1);
+
     }
-    //    public static void Ticket_cancellation(Flies flies){//تابع برای گنسل کردن بلیط
-//        Scanner scanner = new Scanner(System.in);
-//        Methods.cls();
-//        Booked_thickets();
-//        System.out.print(ANSI_PURPLE+"Please select the desired ticket number : "+ANSI_RESET);
-//        int x = scanner.nextInt();
-//        flies.tickets[x-1] = flies.tickets[x];
-//        Flies.setK(Flies.getK()-1);
-//        for (int i = x; i < Flies.getK(); i++) {
-//            flies.tickets[i] = flies.tickets[i+1];
-//        }
-//        System.out.println(ANSI_GREEN+"Mission accomplished"+ANSI_RESET);
-//        Seats[x-1]++;
-//        Methods.wait(2);
-//    }
     public void Booked_thickets(Small_User users1) {//تابع برای مشاهده بلیط های خریداری شده
         Methods.cls();
         if (users1.ticket.getI() == 0) {
             System.out.println(ANSI_RED + "* You do not have a purchased ticket *" + ANSI_RESET);
-            Methods.wait(2);
+            Methods.wait(1);
             return;
         }
         Methods.wait(1);
+        System.out.println(ANSI_GREEN + "|FlightId|" + '\t' + '\t' + "|Origin|" + '\t' + "|Destination|" + '\t' + "|Date|" + '\t' + '\t' + '\t' + "|Time|"
+                + '\t' + '\t' + "|Price|" +'\t' + '\t' + "|TicketId|" + ANSI_RESET);
+        System.out.println(ANSI_BLACK_BOLD + "................................................................................................" + ANSI_RESET);
         for (int i = 0; i < users1.ticket.getI(); i++) {
             System.out.print(Colors.colors[i] + (i + 1) + "-" + "|" + users1.ticket.ticket[i].getFlightId() + "|" + ANSI_RESET + '\t' + '\t');
             System.out.print(Colors.colors[i] + "|" + users1.ticket.ticket[i].getOrigin() + "|" + ANSI_RESET + '\t' + '\t');
             System.out.print(Colors.colors[i] + "|" + users1.ticket.ticket[i].getDestination() + "|" + ANSI_RESET + '\t' + '\t');
             System.out.print(Colors.colors[i] + "|" + users1.ticket.ticket[i].getYear() + "/" + users1.ticket.ticket[i].getMonth() + "/" + users1.ticket.ticket[i].getDay() + "|" + ANSI_RESET + '\t');
             System.out.print(Colors.colors[i] + "|" + users1.ticket.ticket[i].getTime() + "|" + ANSI_RESET + '\t' + '\t');
-            System.out.println(Colors.colors[i] + "|" + users1.ticket.ticket[i].getPrice() + "|" + ANSI_RESET + '\t');
+            System.out.print(Colors.colors[i] + "|" + users1.ticket.ticket[i].getPrice() + "|" + ANSI_RESET + '\t');
+            System.out.println(Colors.colors[i] +"|"+ users1.ticket.ticket[i].getTicketId() + "|" + ANSI_RESET);
+            System.out.println(ANSI_BLACK_BOLD + "................................................................................................" + ANSI_RESET);
+            Methods.wait(0/5);
         }
-        Methods.wait(3);
+
+
+
     }
     //--------------Gets && Sets---------------//
     //---------------Constructor---------------//

@@ -11,11 +11,12 @@ public class Ticket {
     private  String Month;
     private  String Day;
     private  int Seat;
+    private int TicketId;
     private int i = 0;
     public Ticket[] ticket = new Ticket[50];
     //----------constructor----------//
 
-    public Ticket(String flightId, String origin, String destination, String year, String month, String day, String time, long price,int seats) {
+    public Ticket(String flightId, String origin, String destination, String year, String month, String day, String time, long price,int seats,int ticketId) {
         FlightId = flightId;
         Origin = origin;
         Destination = destination;
@@ -25,11 +26,20 @@ public class Ticket {
         Time = time;
         Price = price;
         Seat = seats;
+        TicketId = ticketId;
     }
     public Ticket() {
     }
     //----------Sets && Gets---------//
 
+
+    public int getTicketId() {
+        return TicketId;
+    }
+
+    public void setTicketId(int ticketId) {
+        TicketId = ticketId;
+    }
 
     public String getOrigin() {
         return Origin;
