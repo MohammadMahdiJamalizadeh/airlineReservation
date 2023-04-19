@@ -17,20 +17,7 @@ public class Methods extends Colors {
 
         System.out.println(ANSI_RED + "1- Sing in" + ANSI_RESET + '\n' + ANSI_BLUE + "2- Sing up" +'\n' +ANSI_RESET+ANSI_BLACK_BOLD+"0- Exit" + ANSI_RESET);
     }
-    public int Set_the_correct_input(){
-         int number = 0;
-        while (true){ // تنظیم کردن ورودی صحیح گرفتن
-            if(scanner.hasNextInt()){
-                number = scanner.nextInt();
-                if(number > -1 && number < 3){
-                    break;
-                }
-            }
-            System.out.println(ANSI_BLACK_BOLD+"! Please try again !"+ANSI_RESET);
-            scanner = new Scanner(System.in);
-        }
-        return number;
-    }
+
     public static void cls() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
@@ -44,7 +31,6 @@ public class Methods extends Colors {
 
     public void get_input_username_password_sing_up() {//تابع برای ورودی گرفتن منوی sing_up
         String username, password;
-        int x;
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println(ANSI_WHITE_BOLD + "Please enter your username and password :" + ANSI_RESET);
@@ -52,23 +38,42 @@ public class Methods extends Colors {
             username = scanner.next();
             System.out.print(ANSI_WHITE_BOLD + "PASSWORD : " + ANSI_RESET);
             password = scanner.next();
-            Small_User small_user = new Small_User(username,password);
+            Small_User small_user = new Small_User(username, password);
             users.setUsers(small_user);
             cls();
             System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
             System.out.println(ANSI_BLACK_BOLD + "          Account successfully created :)" + ANSI_RESET);
             System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
             Methods.wait(1);
-            System.out.println(ANSI_RED + "Do you want to continue ?" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + "1-YES            2-NO" + ANSI_RESET);
-             x = scanner.nextInt();
-            if (x == 2) {
-                cls();
+            int x = Continue();
+            if (x == 2){
                 break;
             }
-        }
-    }
 
+            }
+        }
+        public static int Continue() {
+            int x;
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                try {
+                    System.out.println(ANSI_RED + "Do you want to continue ?" + ANSI_RESET);
+                    System.out.println(ANSI_CYAN + "1-YES            2-NO" + ANSI_RESET);
+                    x = scanner.nextInt();
+                        if (x == 1){
+                            return 1;
+                        }
+                        else if (x == 2){
+                            return 2;
+                        }
+                }catch (Exception a){
+                    wait(1);
+                    System.out.println(ANSI_BLACK_BOLD+"! Please try again !"+ANSI_RESET);
+                    scanner = new Scanner(System.in);
+                    wait(1);
+                }
+            }
+        }
     public void Description_sing_up() {//تابع برای توضیحات منوی sing_up
         System.out.println("--------------------------------------------------------------------------");
         System.out.println(ANSI_YELLOW + "Dear user, please note that your username must contain English letters and" + ANSI_RESET + '\n' +
@@ -147,10 +152,11 @@ public class Methods extends Colors {
     public static void Date() {
         Date dNow = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss");
-        System.out.println(ANSI_CYAN+"    Current Date: " + ft.format(dNow)+ANSI_RESET);
+        System.out.println(ANSI_CYAN_BOLD+"    Current Date: " + ft.format(dNow)+ANSI_RESET);
     }
     public static void pressEnterToContinue()
     {
+        wait(1);
         System.out.println("Press Enter key to continue...");    try    {
         System.in.read();    }
     catch(Exception e)
@@ -160,9 +166,10 @@ public class Methods extends Colors {
     public void print_Admin_menu_option(){
         System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
         System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
-        System.out.println("            ADMIN MENU OPTION");
+        System.out.println("                 ADMIN MENU OPTION");
         System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
         System.out.println(ANSI_BLACK_BOLD + "-----------------------------------------------" + ANSI_RESET);
+        Date();
         System.out.println(ANSI_BLUE+"1- Add"+ANSI_RESET);
         System.out.println(ANSI_BLUE+"2- Update"+ANSI_RESET);
         System.out.println(ANSI_BLUE+"3- Remove"+ANSI_RESET);
@@ -195,35 +202,24 @@ public class Methods extends Colors {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             try {
-
-
                 System.out.print(ANSI_BLACK_BOLD + "Your current account balance : " + ANSI_RESET);
                 System.out.printf("%,d%n", user1.getCharge());
-                Methods.wait(1);
+                System.out.println();
                 Methods.pressEnterToContinue();
-                System.out.println(ANSI_RED + "Do you want to top up your account?" + ANSI_RESET);
-                System.out.println(ANSI_BLUE + "1-YES       2-NO" + ANSI_RESET);
-                int x = scanner.nextInt();
+                int x = Continue();
                 if (x == 2) {
-
                     break;
                 }
-
                 System.out.print("Please enter the desired amount(Toman) : ");
                 charge = scanner.nextLong();
                 user1.setCharge(charge + user1.getCharge());
                 Methods.cls();
                 Methods.wait(1);
-                System.out.println(ANSI_GREEN + "Charging was done successfully. Do you want to continue?" + ANSI_RESET);
-                System.out.println(ANSI_BLUE + "1-YES       2-NO" + ANSI_RESET);
-                x = scanner.nextInt();
-                if (x == 2) {
-                    break;
-                }
-
-
+                System.out.println(ANSI_GREEN + "Charging was done successfully" + ANSI_RESET);
+                Methods.wait(1);
             }catch (Exception a){
-                System.out.println("Try Again");
+                wait(1);
+                System.out.println(ANSI_BLACK_BOLD+"! Please try again !"+ANSI_RESET);
             }
         }
     }
@@ -235,31 +231,38 @@ public class Methods extends Colors {
         System.out.printf("%,d%n",users.getCharge());
         Methods.pressEnterToContinue();
     }
-    public void Ticket_cancellation(Small_User user){ // تابع برای کنسل کردن بلیط
+    public void Ticket_cancellation(Small_User user) { // تابع برای کنسل کردن بلیط
         Methods.cls();
         Tickets tickets = new Tickets();
         tickets.Booked_thickets(user);
         if (user.ticket.getI() == 0) {
             return;
         }
-        System.out.print(ANSI_CYAN+"Please enter the desired TicketId : "+ANSI_RESET);
-        int str = scanner.nextInt();
-        for (int j = 0; j < user.ticket.getI(); j++) {
-            if (str == user.ticket.ticket[j].getTicketId()){
-                user.setCharge(user.getCharge()+user.ticket.ticket[j].getPrice());
-                Flies.fly[j].setSeat(Flies.fly[j].getSeat() + 1);
-                for (int k = j; k < user.ticket.getI(); k++) {
-                    user.ticket.ticket[k] = user.ticket.ticket[k+1];
+        try {
+
+            System.out.print(ANSI_CYAN + "Please enter the desired TicketId : " + ANSI_RESET);
+            int str = scanner.nextInt();
+            for (int j = 0; j < user.ticket.getI(); j++) {
+                if (str == user.ticket.ticket[j].getTicketId()) {
+                    user.setCharge(user.getCharge() + user.ticket.ticket[j].getPrice());
+                    Flies.fly[j].setSeat(Flies.fly[j].getSeat() + 1);
+                    for (int k = j; k < user.ticket.getI(); k++) {
+                        user.ticket.ticket[k] = user.ticket.ticket[k + 1];
+                    }
+                    wait(1);
+                    System.out.println(ANSI_BLACK_BOLD + "Your ticket has been cancelled" + ANSI_RESET);
+                    user.ticket.setI(user.ticket.getI() - 1);
+                    Methods.pressEnterToContinue();
+                    return;
                 }
-                wait(1);
-                System.out.println(ANSI_BLACK_BOLD+"Your ticket has been cancelled"+ANSI_RESET);
-                user.ticket.setI(user.ticket.getI() - 1);
-                Methods.pressEnterToContinue();
-                return;
             }
+            wait(1);
+            System.out.println(ANSI_BLUE + "!The desired ID was not found!" + ANSI_RESET);
+            Methods.pressEnterToContinue();
+        }catch (Exception a){
+            wait(1);
+            System.out.println(ANSI_BLACK_BOLD+"! Please try again !"+ANSI_RESET);
         }
-        wait(1);
-        System.out.println(ANSI_BLUE+"!The desired ID was not found!"+ANSI_RESET);
     }
     //----------------SETS && GETS-------------//
 

@@ -12,6 +12,6 @@ public class Colors {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_WHITE_BOLD = "\033[1;37m";
     public static final String ANSI_CYAN_BOLD = "\033[1;36m";
-    public static String[] colors = {"\u001B[31m","\u001B[33m","\u001B[36m","\u001B[35m","\033[1;36m"};
+    public static String[] colors = {"\u001B[31m","\u001B[33m","\u001B[36m","\u001B[35m","\u001B[34m","\u001B[32m"};
 }
 

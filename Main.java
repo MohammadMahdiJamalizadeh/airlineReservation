@@ -49,7 +49,10 @@ public class Main extends Colors{
                         int n = scanner.nextInt();
                         if (n == 1) {
                             methods.changePassword(users.users[users.getJ()]);//تابع برای عوض کردن پسورد
-                        } else if (n == 3) {
+                        }
+                        else if (n == 2){
+                            tickets.Search();//تابع برای سرچ کردن بلیط
+                        }else if (n == 3) {
                             tickets.Buy_tickets(users.users[users.getJ()]);//تابع برای خریدن بلیط
                         } else if (n == 6) {
                             methods.Add_charge(users.users[users.getJ()]);//تابع برای افزایش شارژ
@@ -75,9 +78,9 @@ public class Main extends Colors{
                         if (n == 1) {
                             admin.Add_fly();//تابع برای اضافه کردن بلیط توسط ادمین سایت
                         } else if (n == 2) {
-                            admin.Update_fly();
+                            admin.Update_fly();//تابع برای آپدیت کردن بلیط ها
                         } else if (n == 3) {
-                            admin.Remove_Ticket();
+                            admin.Remove_Ticket();//تابع برای حذغ کردن بلیط ها
                         } else if (n == 4) {
                             tickets.print_flight_list();//تابع برای نشان دادن لیست پرواز ها
 
