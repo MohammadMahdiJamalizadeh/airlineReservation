@@ -3,7 +3,7 @@ public class Flies extends Colors{
     public static Flight[] fly = new Flight[50];
     private static int i;
     //----------------Constructor---------------//
-    public static void setFlies(Flight flies1){//ارایه برای تمام بلیط هایی که وجود دارد
+    public static void setFlies(Flight flies1){//Save tickets
         fly[i] = flies1;
         i++;
     }

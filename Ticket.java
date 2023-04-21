@@ -13,6 +13,7 @@ public class Ticket {
     private  int Seat;
     private int TicketId;
     private int i = 0;
+
     public Ticket[] ticket = new Ticket[50];
     //----------constructor----------//
 

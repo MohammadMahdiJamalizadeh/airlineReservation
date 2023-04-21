@@ -6,19 +6,21 @@ public class Tickets extends Colors {
 
     //--------------Variable----------------//
     Scanner scanner = new Scanner(System.in);
+    private static int p;
     //-----------------Methods--------------//
-    public void setTicket(Small_User user,Ticket ticket1){//تابع برای بلیط خریداری شده توسط مسافر
+    public void setTicket(Small_User user,Ticket ticket1){ // Save purchased tickets
         user.ticket.ticket[user.ticket.getI()] = ticket1;
         user.ticket.setI(user.ticket.getI() + 1);
+        p++;
     }
-    public void Buy_tickets(Small_User users1) {//تابع برای خرید بلیط
+    public void Buy_tickets(Small_User users1) {
         Scanner scanner = new Scanner(System.in);
         Tickets tickets = new Tickets();
-        Methods.cls();
+//        Methods.cls();
         int x;
         while (true) {
             try {
-                tickets.print_flight_list();//منوی چاپ مشخصات بلیط ها
+                tickets.print_flight_list();
                 System.out.print("desired number : ");
                 x = scanner.nextInt();
                 Methods.wait(1);
@@ -33,7 +35,9 @@ public class Tickets extends Colors {
                                 Flies.fly[x - 1].getMonth(), Flies.fly[x - 1].getDay(), Flies.fly[x - 1].getTime(), Flies.fly[x - 1].getPrice(), Flies.fly[x - 1].getSeat(), ticketid);
                         tickets.setTicket(users1, ticket);
                         Methods.wait(1);
-                        x = Methods.Continue();
+                        System.out.println(ANSI_RED + "Do you want to continue ?" + ANSI_RESET);
+                        System.out.println(ANSI_CYAN + "1-YES            2-NO" + ANSI_RESET);
+                        x = scanner.nextInt();
                         if (x == 2) {
                             Methods.wait(1);
                             break;
@@ -66,7 +70,7 @@ public class Tickets extends Colors {
         Flight flight4 = new Flight("QP-28","Kerman","Tehran","1402","12","10","18:00",2000000,5);
         Flies.setFlies(flight4);
     }
-    public void print_flight_list() {// تابع چاپ لیست پرواز ها
+    public void print_flight_list() {
 //        Methods.cls();
         System.out.printf("%-20s",ANSI_GREEN + "|FlightId|"+ANSI_RESET);
         System.out.printf("%-20s",ANSI_GREEN + "|Origin|"+ANSI_RESET);
@@ -92,11 +96,12 @@ public class Tickets extends Colors {
         System.out.println();
         Methods.pressEnterToContinue();
     }
-    public void Booked_thickets(Small_User users1) {//تابع برای مشاهده بلیط های خریداری شده
+    public void Booked_thickets(Small_User users1) {
 //        Methods.cls();
         if (users1.ticket.getI() == 0) {
             System.out.println(ANSI_RED + "* You do not have a purchased ticket *" + ANSI_RESET);
             Methods.wait(1);
+            Methods.pressEnterToContinue();
             return;
         }
         Methods.wait(1);
@@ -263,9 +268,17 @@ public class Tickets extends Colors {
         System.out.println();
         Methods.pressEnterToContinue();
     }
-    //--------------Gets && Sets---------------//
     //---------------Constructor---------------//
 
     public Tickets() {
+    }
+    //--------------Sets && Gets-------------//
+
+    public static int getP() {
+        return p;
+    }
+
+    public static void setP(int p) {
+        Tickets.p = p;
     }
 }

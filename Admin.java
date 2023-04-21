@@ -44,7 +44,7 @@ public class Admin extends Colors{
             Flies.setFlies(flight);
             admin.setW(admin.getW()+1);
             Methods.wait(1);
-            Methods.cls();
+//            Methods.cls();
             System.out.println(ANSI_CYAN + "Mission accomplished" + ANSI_RESET);
             System.out.println(ANSI_BLUE + "Do you want to continue?" + ANSI_RESET);
             System.out.println("1-YES      2-NO");
@@ -56,18 +56,31 @@ public class Admin extends Colors{
     }
     public void Remove_Ticket() {
         Scanner scanner = new Scanner(System.in);
+        Ticket ticket = new Ticket();
+        Users users = new Users();
         Tickets tickets = new Tickets();
         while (true) {
             tickets.print_flight_list();//منوی چاپ مشخصات بلیط ها
-            Methods.wait(2);
+            Methods.wait(1);
             System.out.print("Please select the desired number : ");
             int x = scanner.nextInt();
+            for (int i = 0; i < Users.getQ(); i++) {
+                for (int j = 0; j < Tickets.getP(); j++) {
+                    if (Flies.fly[x - 1].getFlightId().equals(Users.users[i].ticket.ticket[j].getFlightId())) {
+                        Methods.wait(1);
+                        System.out.println(ANSI_BLACK_BOLD + "! You cannot Remove because this ticket has been purchased !" + ANSI_RESET);
+                        Methods.pressEnterToContinue();
+                        return;
+                    }
+                }
+            }
             Flies.fly[x-1] = Flies.fly[x];
             Flies.setI(Flies.getI()-1);
             for (int i = x; i < Flies.getI(); i++) {
                 Flies.fly[i] = Flies.fly[i + 1];
             }
-            Methods.cls();
+//            Methods.cls();
+            Methods.wait(1);
             System.out.println(ANSI_CYAN + "Mission accomplished" + ANSI_RESET);
             System.out.println(ANSI_BLUE + "Do you want to continue?" + ANSI_RESET);
             System.out.println("1-YES      2-NO");
@@ -81,84 +94,83 @@ public class Admin extends Colors{
         Scanner scanner = new Scanner(System.in);
         Tickets tickets = new Tickets();
         while (true) {
-            tickets.print_flight_list();//تابع برای نشان دادن لیست پرواز ها
-            System.out.print(ANSI_BLUE+"Please select the desired ticket : "+ANSI_RESET);
-            int x = scanner.nextInt();
-            Methods.cls();
-            Methods.wait(1);
-            System.out.println(ANSI_GREEN+"|FlightId|"+'\t'+'\t'+"|Origin|"+'\t'+"|Destination|"+'\t'+"|Date|"+'\t'+'\t'+'\t'+"|Time|"+'\t'+'\t'+"|Price|"+'\t'+'\t'+"|Seats|"+ANSI_RESET);
-            for (int i = x-1; i < x; i++) {
-                System.out.println(ANSI_BLACK_BOLD+"................................................................................................"+ANSI_RESET);
-                System.out.print(Colors.colors[i]+(i+1)+"-"+"|"+Flies.fly[i].getFlightId()+"|"+ANSI_RESET+'\t'+'\t');
-                System.out.print(Colors.colors[i]+"|"+Flies.fly[i].getOrigin()+"|"+ANSI_RESET+'\t'+'\t');
-                System.out.print(Colors.colors[i]+"|"+Flies.fly[i].getDestination()+"|"+ANSI_RESET+'\t'+'\t');
-                System.out.print(Colors.colors[i]+"|"+Flies.fly[i].getYear()+"/"+Flies.fly[i].getMonth()+"/"+Flies.fly[i].getDay()+"|"+ANSI_RESET+'\t');
-                System.out.print(Colors.colors[i]+"|"+Flies.fly[i].getTime()+"|"+ANSI_RESET+'\t'+'\t');
-                System.out.print(Colors.colors[i]+"|"+Flies.fly[i].getPrice()+"|"+ANSI_RESET+'\t');
-                System.out.println(Colors.colors[i]+"|"+Flies.fly[i].getSeat()+"|"+ANSI_RESET);
-                System.out.println(ANSI_BLACK_BOLD+"................................................................................................"+ANSI_RESET);
+                tickets.print_flight_list();
+                System.out.print(ANSI_BLUE + "Please select the desired ticket : " + ANSI_RESET);
+                int x = scanner.nextInt();
+//            Methods.cls();
+                Methods.wait(1);
+                    System.out.printf("%-20s", ANSI_GREEN + "|FlightId|" + ANSI_RESET);
+                    System.out.printf("%-20s", ANSI_GREEN + "|Origin|" + ANSI_RESET);
+                    System.out.printf("%-25s", ANSI_GREEN + "|Destination|" + ANSI_RESET);
+                    System.out.printf("%-25s", ANSI_GREEN + "|Date|" + ANSI_RESET);
+                    System.out.printf("%-20s", ANSI_GREEN + "|Time|" + ANSI_RESET);
+                    System.out.printf("%-20s", ANSI_GREEN + "|Price|" + ANSI_RESET);
+                    System.out.printf("%-15s", ANSI_GREEN + "|Seat|" + ANSI_RESET);
+                    System.out.println();
+                    System.out.println(ANSI_BLACK_BOLD + "...................................................................................." + ANSI_RESET);
+                    System.out.printf("%-20s", Colors.colors[x - 1] + "1-" + "|" + Flies.fly[x - 1].getFlightId() + "|" + ANSI_RESET);
+                    System.out.printf("%-20s", Colors.colors[x - 1] + "|" + Flies.fly[x - 1].getOrigin() + "|" + ANSI_RESET);
+                    System.out.printf("%-25s", Colors.colors[x - 1] + "|" + Flies.fly[x - 1].getDestination() + "|" + ANSI_RESET);
+                    System.out.printf("%-25s", Colors.colors[x - 1] + "|" + Flies.fly[x - 1].getYear() + "/" + Flies.fly[x - 1].getMonth() + "/" + Flies.fly[x - 1].getDay() + "|" + ANSI_RESET);
+                    System.out.printf("%-20s", Colors.colors[x - 1] + "|" + Flies.fly[x - 1].getTime() + "|" + ANSI_RESET);
+                    System.out.printf("%-20s", Colors.colors[x - 1] + "|" + Flies.fly[x - 1].getPrice() + "|" + ANSI_RESET);
+                    System.out.printf("%-20s", Colors.colors[x - 1] + "|" + Flies.fly[x - 1].getSeat() + "|" + ANSI_RESET);
+                    System.out.println();
+                    System.out.println(ANSI_BLACK_BOLD + "...................................................................................." + ANSI_RESET);
+                    Methods.wait(1);
+                    System.out.print(ANSI_BLUE + "please Enter the desired part : " + ANSI_RESET);
+                    String a = scanner.next();
+                    if (a.equals("FlightId")) {
+                        Methods.wait(1);
+                        System.out.print(ANSI_RED + "NEW FlightId : " + ANSI_RESET);
+                        FlightId = scanner.next();
+                        Flies.fly[x - 1].setFlightId(FlightId);
+                    } else if (a.equals("Origin")) {
+                        Methods.wait(1);
+                        System.out.print(ANSI_RED + "NEW Origin : " + ANSI_RESET);
+                        Origin = scanner.next();
+                        Flies.fly[x - 1].setOrigin(Origin);
+                    } else if (a.equals("Destination")) {
+                        Methods.wait(1);
+                        System.out.print(ANSI_RED + "NEW Destination : " + ANSI_RESET);
+                        Destination = scanner.next();
+                        Flies.fly[x - 1].setDestination(Destination);
 
-            }
-            Methods.wait(1);
-            System.out.print(ANSI_BLUE+"please Enter the desired part : "+ANSI_RESET);
-            String a = scanner.next();
-            if(a.equals("FlightId")){
-                Methods.wait(1);
-                System.out.print(ANSI_RED+"NEW FlightId : "+ANSI_RESET);
-                FlightId = scanner.next();
-                Flies.fly[x-1].setFlightId(FlightId);
-            }
-            else if(a.equals("Origin")){
-                Methods.wait(1);
-                System.out.print(ANSI_RED+"NEW Origin : "+ANSI_RESET);
-                Origin = scanner.next();
-                Flies.fly[x-1].setOrigin(Origin);
-            }
-            else if(a.equals("Destination")){
-                Methods.wait(1);
-                System.out.print(ANSI_RED+"NEW Destination : "+ANSI_RESET);
-                Destination = scanner.next();
-                Flies.fly[x-1].setDestination(Destination);
-
-            }
-            else if(a.equals("Date")){
-                Methods.wait(1);
-                System.out.println(ANSI_RED+"NEW Date"+ANSI_RESET);
-                System.out.print(ANSI_BLACK_BOLD+"NEW YEAR : "+ANSI_RESET);
-                Year = scanner.next();
-                Flies.fly[x-1].setYear(Year);
-                System.out.print(ANSI_BLACK_BOLD+"NEW MONTH : "+ANSI_RESET);
-                Month = scanner.next();
-                Flies.fly[x-1].setMonth(Month);
-                System.out.print(ANSI_BLACK_BOLD+"NEW DAY : "+ANSI_RESET);
-                Day = scanner.next();
-                Flies.fly[x-1].setDay(Day);
-            }
-            else if(a.equals("Time")){
-                Methods.wait(1);
-                System.out.println(ANSI_RED+"NEW TIME : "+ANSI_RESET);
-                Time = scanner.next();
-                Flies.fly[x-1].setTime(Time);
-            }
-            else if(a.equals("Price")){
-                Methods.wait(1);
-                System.out.print(ANSI_RED+"NEW Price : "+ANSI_RESET);
-                Price = scanner.nextInt();
-                Flies.fly[x-1].setPrice(Price);
-            }
-            else if (a.equals("Seats")){
-                Methods.wait(1);
-                System.out.print(ANSI_RED+"NEW Seats : "+ANSI_RESET);
-                Seat = scanner.nextInt();
-                Flies.fly[x-1].setSeat(Seat);
-            }
-            Methods.wait(1);
-            System.out.println(ANSI_GREEN+"The operation was successful, do you want to continue?"+ANSI_RESET);
-            System.out.println("1-YES         2-NO");
-            int w = scanner.nextInt();
-            if (w == 2){
-                break;
-            }
+                    } else if (a.equals("Date")) {
+                        Methods.wait(1);
+                        System.out.println(ANSI_RED + "NEW Date" + ANSI_RESET);
+                        System.out.print(ANSI_BLACK_BOLD + "NEW YEAR : " + ANSI_RESET);
+                        Year = scanner.next();
+                        Flies.fly[x - 1].setYear(Year);
+                        System.out.print(ANSI_BLACK_BOLD + "NEW MONTH : " + ANSI_RESET);
+                        Month = scanner.next();
+                        Flies.fly[x - 1].setMonth(Month);
+                        System.out.print(ANSI_BLACK_BOLD + "NEW DAY : " + ANSI_RESET);
+                        Day = scanner.next();
+                        Flies.fly[x - 1].setDay(Day);
+                    } else if (a.equals("Time")) {
+                        Methods.wait(1);
+                        System.out.println(ANSI_RED + "NEW TIME : " + ANSI_RESET);
+                        Time = scanner.next();
+                        Flies.fly[x - 1].setTime(Time);
+                    } else if (a.equals("Price")) {
+                        Methods.wait(1);
+                        System.out.print(ANSI_RED + "NEW Price : " + ANSI_RESET);
+                        Price = scanner.nextInt();
+                        Flies.fly[x - 1].setPrice(Price);
+                    } else if (a.equals("Seats")) {
+                        Methods.wait(1);
+                        System.out.print(ANSI_RED + "NEW Seats : " + ANSI_RESET);
+                        Seat = scanner.nextInt();
+                        Flies.fly[x - 1].setSeat(Seat);
+                    }
+                    Methods.wait(1);
+                    System.out.println(ANSI_GREEN + "The operation was successful, do you want to continue?" + ANSI_RESET);
+                    System.out.println("1-YES         2-NO");
+                    int w = scanner.nextInt();
+                if (w == 2) {
+                    break;
+                }
         }
     }
     //-----------GETS && SETS----------//
