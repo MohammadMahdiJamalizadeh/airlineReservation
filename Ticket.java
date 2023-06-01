@@ -13,11 +13,10 @@ public class Ticket {
     private  int Seat;
     private int TicketId;
     private int i = 0;
-
     public Ticket[] ticket = new Ticket[50];
     //----------constructor----------//
 
-    public Ticket(String flightId, String origin, String destination, String year, String month, String day, String time, long price,int seats,int ticketId) {
+    public Ticket(String flightId, String origin, String destination, String year, String month, String day, String time, String price,String ticketId) {
         FlightId = flightId;
         Origin = origin;
         Destination = destination;
@@ -25,9 +24,9 @@ public class Ticket {
         Month = month;
         Day = day;
         Time = time;
-        Price = price;
-        Seat = seats;
-        TicketId = ticketId;
+        Price = Long.parseLong(price);
+//        Seat = seats;
+        TicketId = Integer.parseInt(ticketId);
     }
     public Ticket() {
     }

@@ -56,4 +56,3 @@ public class Colors {
     public static final String BACKGROUND_WHITE          = "\033[107m";
     public static String[] colors = {"\u001B[31m","\u001B[33m","\u001B[36m","\u001B[35m","\u001B[34m","\u001B[32m"};
 }
-
